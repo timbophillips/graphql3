@@ -1,0 +1,15 @@
+{
+  "/api": {
+    "target": "http://localhost:8080/v1/graphql",
+    "pathRewrite": { "^/api": "" },
+    "secure": false
+  },
+  "/ws": {
+    "target": "ws://localhost:8080/v1/graphql",
+    "pathRewrite": { "^/ws": "" },
+    "secure": false,
+    "ws": true,
+    "changeOrigin": true
+  },
+  "logLevel": "debug"
+}

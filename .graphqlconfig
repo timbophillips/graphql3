@@ -1,0 +1,11 @@
+{
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "default": {
+        "url": "http://localhost:8080/v1/graphql",
+        "subscription": "ws://localhost:8080/v1/graphql"
+      }
+    }
+  }
+}

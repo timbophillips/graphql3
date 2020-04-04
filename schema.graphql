@@ -1,0 +1,522 @@
+# source: http://localhost:8080/v1/graphql
+# timestamp: Sat Apr 04 2020 09:23:37 GMT+0800 (Australian Western Standard Time)
+
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+
+"""
+expression to compare columns of type Int. All fields are combined with logical 'AND'.
+"""
+input Int_comparison_exp {
+  _eq: Int
+  _gt: Int
+  _gte: Int
+  _in: [Int!]
+  _is_null: Boolean
+  _lt: Int
+  _lte: Int
+  _neq: Int
+  _nin: [Int!]
+}
+
+"""mutation root"""
+type mutation_root {
+  """
+  delete data from the table: "names"
+  """
+  delete_names(
+    """filter the rows which have to be deleted"""
+    where: names_bool_exp!
+  ): names_mutation_response
+
+  """
+  insert data into the table: "names"
+  """
+  insert_names(
+    """the rows to be inserted"""
+    objects: [names_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: names_on_conflict
+  ): names_mutation_response
+
+  """
+  update data of the table: "names"
+  """
+  update_names(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: names_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: names_set_input
+
+    """filter the rows which have to be updated"""
+    where: names_bool_exp!
+  ): names_mutation_response
+}
+
+"""
+columns and relationships of "names"
+"""
+type names {
+  color: String
+  id: Int!
+  name: String!
+  number: Int
+}
+
+"""
+aggregated selection of "names"
+"""
+type names_aggregate {
+  aggregate: names_aggregate_fields
+  nodes: [names!]!
+}
+
+"""
+aggregate fields of "names"
+"""
+type names_aggregate_fields {
+  avg: names_avg_fields
+  count(columns: [names_select_column!], distinct: Boolean): Int
+  max: names_max_fields
+  min: names_min_fields
+  stddev: names_stddev_fields
+  stddev_pop: names_stddev_pop_fields
+  stddev_samp: names_stddev_samp_fields
+  sum: names_sum_fields
+  var_pop: names_var_pop_fields
+  var_samp: names_var_samp_fields
+  variance: names_variance_fields
+}
+
+"""
+order by aggregate values of table "names"
+"""
+input names_aggregate_order_by {
+  avg: names_avg_order_by
+  count: order_by
+  max: names_max_order_by
+  min: names_min_order_by
+  stddev: names_stddev_order_by
+  stddev_pop: names_stddev_pop_order_by
+  stddev_samp: names_stddev_samp_order_by
+  sum: names_sum_order_by
+  var_pop: names_var_pop_order_by
+  var_samp: names_var_samp_order_by
+  variance: names_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "names"
+"""
+input names_arr_rel_insert_input {
+  data: [names_insert_input!]!
+  on_conflict: names_on_conflict
+}
+
+"""aggregate avg on columns"""
+type names_avg_fields {
+  id: Float
+  number: Float
+}
+
+"""
+order by avg() on columns of table "names"
+"""
+input names_avg_order_by {
+  id: order_by
+  number: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "names". All fields are combined with a logical 'AND'.
+"""
+input names_bool_exp {
+  _and: [names_bool_exp]
+  _not: names_bool_exp
+  _or: [names_bool_exp]
+  color: String_comparison_exp
+  id: Int_comparison_exp
+  name: String_comparison_exp
+  number: Int_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "names"
+"""
+enum names_constraint {
+  """unique or primary key constraint"""
+  names_pkey
+}
+
+"""
+input type for incrementing integer columne in table "names"
+"""
+input names_inc_input {
+  id: Int
+  number: Int
+}
+
+"""
+input type for inserting data into table "names"
+"""
+input names_insert_input {
+  color: String
+  id: Int
+  name: String
+  number: Int
+}
+
+"""aggregate max on columns"""
+type names_max_fields {
+  color: String
+  id: Int
+  name: String
+  number: Int
+}
+
+"""
+order by max() on columns of table "names"
+"""
+input names_max_order_by {
+  color: order_by
+  id: order_by
+  name: order_by
+  number: order_by
+}
+
+"""aggregate min on columns"""
+type names_min_fields {
+  color: String
+  id: Int
+  name: String
+  number: Int
+}
+
+"""
+order by min() on columns of table "names"
+"""
+input names_min_order_by {
+  color: order_by
+  id: order_by
+  name: order_by
+  number: order_by
+}
+
+"""
+response of any mutation on the table "names"
+"""
+type names_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [names!]!
+}
+
+"""
+input type for inserting object relation for remote table "names"
+"""
+input names_obj_rel_insert_input {
+  data: names_insert_input!
+  on_conflict: names_on_conflict
+}
+
+"""
+on conflict condition type for table "names"
+"""
+input names_on_conflict {
+  constraint: names_constraint!
+  update_columns: [names_update_column!]!
+  where: names_bool_exp
+}
+
+"""
+ordering options when selecting data from "names"
+"""
+input names_order_by {
+  color: order_by
+  id: order_by
+  name: order_by
+  number: order_by
+}
+
+"""
+select columns of table "names"
+"""
+enum names_select_column {
+  """column name"""
+  color
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+
+  """column name"""
+  number
+}
+
+"""
+input type for updating data in table "names"
+"""
+input names_set_input {
+  color: String
+  id: Int
+  name: String
+  number: Int
+}
+
+"""aggregate stddev on columns"""
+type names_stddev_fields {
+  id: Float
+  number: Float
+}
+
+"""
+order by stddev() on columns of table "names"
+"""
+input names_stddev_order_by {
+  id: order_by
+  number: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type names_stddev_pop_fields {
+  id: Float
+  number: Float
+}
+
+"""
+order by stddev_pop() on columns of table "names"
+"""
+input names_stddev_pop_order_by {
+  id: order_by
+  number: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type names_stddev_samp_fields {
+  id: Float
+  number: Float
+}
+
+"""
+order by stddev_samp() on columns of table "names"
+"""
+input names_stddev_samp_order_by {
+  id: order_by
+  number: order_by
+}
+
+"""aggregate sum on columns"""
+type names_sum_fields {
+  id: Int
+  number: Int
+}
+
+"""
+order by sum() on columns of table "names"
+"""
+input names_sum_order_by {
+  id: order_by
+  number: order_by
+}
+
+"""
+update columns of table "names"
+"""
+enum names_update_column {
+  """column name"""
+  color
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+
+  """column name"""
+  number
+}
+
+"""aggregate var_pop on columns"""
+type names_var_pop_fields {
+  id: Float
+  number: Float
+}
+
+"""
+order by var_pop() on columns of table "names"
+"""
+input names_var_pop_order_by {
+  id: order_by
+  number: order_by
+}
+
+"""aggregate var_samp on columns"""
+type names_var_samp_fields {
+  id: Float
+  number: Float
+}
+
+"""
+order by var_samp() on columns of table "names"
+"""
+input names_var_samp_order_by {
+  id: order_by
+  number: order_by
+}
+
+"""aggregate variance on columns"""
+type names_variance_fields {
+  id: Float
+  number: Float
+}
+
+"""
+order by variance() on columns of table "names"
+"""
+input names_variance_order_by {
+  id: order_by
+  number: order_by
+}
+
+"""column ordering options"""
+enum order_by {
+  """in the ascending order, nulls last"""
+  asc
+
+  """in the ascending order, nulls first"""
+  asc_nulls_first
+
+  """in the ascending order, nulls last"""
+  asc_nulls_last
+
+  """in the descending order, nulls first"""
+  desc
+
+  """in the descending order, nulls first"""
+  desc_nulls_first
+
+  """in the descending order, nulls last"""
+  desc_nulls_last
+}
+
+"""query root"""
+type query_root {
+  """
+  fetch data from the table: "names"
+  """
+  names(
+    """distinct select on columns"""
+    distinct_on: [names_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [names_order_by!]
+
+    """filter the rows returned"""
+    where: names_bool_exp
+  ): [names!]!
+
+  """
+  fetch aggregated fields from the table: "names"
+  """
+  names_aggregate(
+    """distinct select on columns"""
+    distinct_on: [names_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [names_order_by!]
+
+    """filter the rows returned"""
+    where: names_bool_exp
+  ): names_aggregate!
+
+  """fetch data from the table: "names" using primary key columns"""
+  names_by_pk(id: Int!): names
+}
+
+"""
+expression to compare columns of type String. All fields are combined with logical 'AND'.
+"""
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+  _ilike: String
+  _in: [String!]
+  _is_null: Boolean
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+  _nilike: String
+  _nin: [String!]
+  _nlike: String
+  _nsimilar: String
+  _similar: String
+}
+
+"""subscription root"""
+type subscription_root {
+  """
+  fetch data from the table: "names"
+  """
+  names(
+    """distinct select on columns"""
+    distinct_on: [names_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [names_order_by!]
+
+    """filter the rows returned"""
+    where: names_bool_exp
+  ): [names!]!
+
+  """
+  fetch aggregated fields from the table: "names"
+  """
+  names_aggregate(
+    """distinct select on columns"""
+    distinct_on: [names_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [names_order_by!]
+
+    """filter the rows returned"""
+    where: names_bool_exp
+  ): names_aggregate!
+
+  """fetch data from the table: "names" using primary key columns"""
+  names_by_pk(id: Int!): names
+}
