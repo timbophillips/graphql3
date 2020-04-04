@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { NamesGQL, NamesSubscriptionGQL, AddNameGQL, DelNameGQL, NameAndDiseaseGQL, NameAndDiseaseSubscriptionGQL, DiseasesGQL, Disease } from '../generated/types.graphql-gen';
+import { AddNameGQL, DelNameGQL, NameAndDiseaseGQL, NameAndDiseaseSubscriptionGQL, DiseasesGQL, Disease, Names } from '../generated/types.graphql-gen';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +10,8 @@ import { NamesGQL, NamesSubscriptionGQL, AddNameGQL, DelNameGQL, NameAndDiseaseG
 })
 export class AppComponent implements OnInit {
 
-  names$: Observable<string[]>;
-  namesSub$: Observable<{}>;
+  names$: Observable<Names[]>;
+  namesSub$: Observable<Names[]>;
   diseases$: Observable<Disease[]>;
 
   title = 'graphql-angular-learning';
@@ -26,9 +26,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.names$ = this.namesGQL.fetch({}).pipe(
-      map(result => result.data.names.map(x => x.name))
+      map(result => result.data.names)
     );
-    this.namesSub$ = this.namesSubscriptionGQL.subscribe();
+    this.namesSub$ = this.namesSubscriptionGQL.subscribe().pipe(map(result => result.data.names));
     this.diseases$ = this.diseasesGQL.fetch().pipe(map(result => result.data.disease));
   }
 

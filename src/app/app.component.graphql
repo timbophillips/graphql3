@@ -39,6 +39,7 @@ subscription NameAndDiseaseSubscription {
     name
     id
     color
+    number
     disease {
       description
     }

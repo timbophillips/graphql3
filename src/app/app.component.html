@@ -1,66 +1,57 @@
-<div style="padding: 20px">
+<div style="padding: 20px;">
   <h3>apollo-hasura-learning</h3>
 
-<p>
-  <label>name </label>
-  <input #newName />
+  <p>
+    <label>name </label>
+    <input #newName />
 
-  <label>color </label>
-  <input #newColor />
-  <label>number </label>
-  <input #newNumber />
-  <label>disease</label>
-  <select>
-    <option *ngFor="let item of diseases$ | async">
-      {{ item.description }}
-    </option>
-  </select>
+    <label>color </label>
+    <input #newColor />
+    <label>number </label>
+    <input #newNumber />
+    <label>disease</label>
+    <select>
+      <option *ngFor="let item of diseases$ | async" [value]="item.id">
+        {{ item.description }}
+      </option>
+    </select>
 
-  <button (click)="addName(newName.value, newColor.value, newNumber.value)">
-    Add new name
-  </button>
-</p>
+    <button (click)="addName(newName.value, newColor.value, newNumber.value)">
+      Add new name
+    </button>
+  </p>
 </div>
 <div style="padding: 20px;">
-<table style="width:100%">
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Color</th>
-    <th>Number</th>
-    <th>Disease</th>
-    <th>action</th>
-  </tr>
-</thead>
-<tbody>
-<tr *ngFor="let item of namesSub$ | async | select: 'names'">
-  <td>{{
-    item.id
-  }}</td>
-  <td>
-  {{
-    item.name
-  }}
-  </td><td>
-  {{
-    item.color
-  }}
-  </td>
-  <td>
-  {{
-    item.number
-  }}
-</td>
-<td>
-{{
-    item.disease ? item.disease.description : ""
-  }}
-  </td>
-  <td>
-  <button (click)="delName(item.id)">delete</button>
-  </td>
-</tr>
-</tbody>
-</table>
+  <table style="width: 100%;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Color</th>
+        <th>Number</th>
+        <th>Disease</th>
+        <th>action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of namesSub$ | async ">
+        <td>{{ item.id }}</td>
+        <td>
+          {{ item.name }}
+        </td>
+        <td>
+          {{ item.color }}
+        </td>
+        <td>
+          {{ item.number }}
+        </td>
+        <td>
+          {{ item.disease ? item.disease.description : "" }}
+        </td>
+        <td>
+          <button (click)="delName(item.id)">delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
