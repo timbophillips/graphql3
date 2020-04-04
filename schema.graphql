@@ -1,10 +1,334 @@
 # source: http://localhost:8080/v1/graphql
-# timestamp: Sat Apr 04 2020 09:23:37 GMT+0800 (Australian Western Standard Time)
+# timestamp: Sat Apr 04 2020 12:49:18 GMT+0800 (Australian Western Standard Time)
 
 schema {
   query: query_root
   mutation: mutation_root
   subscription: subscription_root
+}
+
+"""
+columns and relationships of "disease"
+"""
+type disease {
+  disease: String!
+  id: Int!
+
+  """An array relationship"""
+  names(
+    """distinct select on columns"""
+    distinct_on: [names_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [names_order_by!]
+
+    """filter the rows returned"""
+    where: names_bool_exp
+  ): [names!]!
+
+  """An aggregated array relationship"""
+  names_aggregate(
+    """distinct select on columns"""
+    distinct_on: [names_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [names_order_by!]
+
+    """filter the rows returned"""
+    where: names_bool_exp
+  ): names_aggregate!
+}
+
+"""
+aggregated selection of "disease"
+"""
+type disease_aggregate {
+  aggregate: disease_aggregate_fields
+  nodes: [disease!]!
+}
+
+"""
+aggregate fields of "disease"
+"""
+type disease_aggregate_fields {
+  avg: disease_avg_fields
+  count(columns: [disease_select_column!], distinct: Boolean): Int
+  max: disease_max_fields
+  min: disease_min_fields
+  stddev: disease_stddev_fields
+  stddev_pop: disease_stddev_pop_fields
+  stddev_samp: disease_stddev_samp_fields
+  sum: disease_sum_fields
+  var_pop: disease_var_pop_fields
+  var_samp: disease_var_samp_fields
+  variance: disease_variance_fields
+}
+
+"""
+order by aggregate values of table "disease"
+"""
+input disease_aggregate_order_by {
+  avg: disease_avg_order_by
+  count: order_by
+  max: disease_max_order_by
+  min: disease_min_order_by
+  stddev: disease_stddev_order_by
+  stddev_pop: disease_stddev_pop_order_by
+  stddev_samp: disease_stddev_samp_order_by
+  sum: disease_sum_order_by
+  var_pop: disease_var_pop_order_by
+  var_samp: disease_var_samp_order_by
+  variance: disease_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "disease"
+"""
+input disease_arr_rel_insert_input {
+  data: [disease_insert_input!]!
+  on_conflict: disease_on_conflict
+}
+
+"""aggregate avg on columns"""
+type disease_avg_fields {
+  id: Float
+}
+
+"""
+order by avg() on columns of table "disease"
+"""
+input disease_avg_order_by {
+  id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "disease". All fields are combined with a logical 'AND'.
+"""
+input disease_bool_exp {
+  _and: [disease_bool_exp]
+  _not: disease_bool_exp
+  _or: [disease_bool_exp]
+  disease: String_comparison_exp
+  id: Int_comparison_exp
+  names: names_bool_exp
+}
+
+"""
+unique or primary key constraints on table "disease"
+"""
+enum disease_constraint {
+  """unique or primary key constraint"""
+  disease_disease_key
+
+  """unique or primary key constraint"""
+  disease_pkey
+}
+
+"""
+input type for incrementing integer columne in table "disease"
+"""
+input disease_inc_input {
+  id: Int
+}
+
+"""
+input type for inserting data into table "disease"
+"""
+input disease_insert_input {
+  disease: String
+  id: Int
+  names: names_arr_rel_insert_input
+}
+
+"""aggregate max on columns"""
+type disease_max_fields {
+  disease: String
+  id: Int
+}
+
+"""
+order by max() on columns of table "disease"
+"""
+input disease_max_order_by {
+  disease: order_by
+  id: order_by
+}
+
+"""aggregate min on columns"""
+type disease_min_fields {
+  disease: String
+  id: Int
+}
+
+"""
+order by min() on columns of table "disease"
+"""
+input disease_min_order_by {
+  disease: order_by
+  id: order_by
+}
+
+"""
+response of any mutation on the table "disease"
+"""
+type disease_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [disease!]!
+}
+
+"""
+input type for inserting object relation for remote table "disease"
+"""
+input disease_obj_rel_insert_input {
+  data: disease_insert_input!
+  on_conflict: disease_on_conflict
+}
+
+"""
+on conflict condition type for table "disease"
+"""
+input disease_on_conflict {
+  constraint: disease_constraint!
+  update_columns: [disease_update_column!]!
+  where: disease_bool_exp
+}
+
+"""
+ordering options when selecting data from "disease"
+"""
+input disease_order_by {
+  disease: order_by
+  id: order_by
+  names_aggregate: names_aggregate_order_by
+}
+
+"""
+select columns of table "disease"
+"""
+enum disease_select_column {
+  """column name"""
+  disease
+
+  """column name"""
+  id
+}
+
+"""
+input type for updating data in table "disease"
+"""
+input disease_set_input {
+  disease: String
+  id: Int
+}
+
+"""aggregate stddev on columns"""
+type disease_stddev_fields {
+  id: Float
+}
+
+"""
+order by stddev() on columns of table "disease"
+"""
+input disease_stddev_order_by {
+  id: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type disease_stddev_pop_fields {
+  id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "disease"
+"""
+input disease_stddev_pop_order_by {
+  id: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type disease_stddev_samp_fields {
+  id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "disease"
+"""
+input disease_stddev_samp_order_by {
+  id: order_by
+}
+
+"""aggregate sum on columns"""
+type disease_sum_fields {
+  id: Int
+}
+
+"""
+order by sum() on columns of table "disease"
+"""
+input disease_sum_order_by {
+  id: order_by
+}
+
+"""
+update columns of table "disease"
+"""
+enum disease_update_column {
+  """column name"""
+  disease
+
+  """column name"""
+  id
+}
+
+"""aggregate var_pop on columns"""
+type disease_var_pop_fields {
+  id: Float
+}
+
+"""
+order by var_pop() on columns of table "disease"
+"""
+input disease_var_pop_order_by {
+  id: order_by
+}
+
+"""aggregate var_samp on columns"""
+type disease_var_samp_fields {
+  id: Float
+}
+
+"""
+order by var_samp() on columns of table "disease"
+"""
+input disease_var_samp_order_by {
+  id: order_by
+}
+
+"""aggregate variance on columns"""
+type disease_variance_fields {
+  id: Float
+}
+
+"""
+order by variance() on columns of table "disease"
+"""
+input disease_variance_order_by {
+  id: order_by
 }
 
 """
@@ -25,12 +349,31 @@ input Int_comparison_exp {
 """mutation root"""
 type mutation_root {
   """
+  delete data from the table: "disease"
+  """
+  delete_disease(
+    """filter the rows which have to be deleted"""
+    where: disease_bool_exp!
+  ): disease_mutation_response
+
+  """
   delete data from the table: "names"
   """
   delete_names(
     """filter the rows which have to be deleted"""
     where: names_bool_exp!
   ): names_mutation_response
+
+  """
+  insert data into the table: "disease"
+  """
+  insert_disease(
+    """the rows to be inserted"""
+    objects: [disease_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: disease_on_conflict
+  ): disease_mutation_response
 
   """
   insert data into the table: "names"
@@ -42,6 +385,20 @@ type mutation_root {
     """on conflict condition"""
     on_conflict: names_on_conflict
   ): names_mutation_response
+
+  """
+  update data of the table: "disease"
+  """
+  update_disease(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: disease_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: disease_set_input
+
+    """filter the rows which have to be updated"""
+    where: disease_bool_exp!
+  ): disease_mutation_response
 
   """
   update data of the table: "names"
@@ -63,6 +420,10 @@ columns and relationships of "names"
 """
 type names {
   color: String
+
+  """An object relationship"""
+  disease: disease
+  disease_id: Int
   id: Int!
   name: String!
   number: Int
@@ -120,6 +481,7 @@ input names_arr_rel_insert_input {
 
 """aggregate avg on columns"""
 type names_avg_fields {
+  disease_id: Float
   id: Float
   number: Float
 }
@@ -128,6 +490,7 @@ type names_avg_fields {
 order by avg() on columns of table "names"
 """
 input names_avg_order_by {
+  disease_id: order_by
   id: order_by
   number: order_by
 }
@@ -140,6 +503,8 @@ input names_bool_exp {
   _not: names_bool_exp
   _or: [names_bool_exp]
   color: String_comparison_exp
+  disease: disease_bool_exp
+  disease_id: Int_comparison_exp
   id: Int_comparison_exp
   name: String_comparison_exp
   number: Int_comparison_exp
@@ -157,6 +522,7 @@ enum names_constraint {
 input type for incrementing integer columne in table "names"
 """
 input names_inc_input {
+  disease_id: Int
   id: Int
   number: Int
 }
@@ -166,6 +532,8 @@ input type for inserting data into table "names"
 """
 input names_insert_input {
   color: String
+  disease: disease_obj_rel_insert_input
+  disease_id: Int
   id: Int
   name: String
   number: Int
@@ -174,6 +542,7 @@ input names_insert_input {
 """aggregate max on columns"""
 type names_max_fields {
   color: String
+  disease_id: Int
   id: Int
   name: String
   number: Int
@@ -184,6 +553,7 @@ order by max() on columns of table "names"
 """
 input names_max_order_by {
   color: order_by
+  disease_id: order_by
   id: order_by
   name: order_by
   number: order_by
@@ -192,6 +562,7 @@ input names_max_order_by {
 """aggregate min on columns"""
 type names_min_fields {
   color: String
+  disease_id: Int
   id: Int
   name: String
   number: Int
@@ -202,6 +573,7 @@ order by min() on columns of table "names"
 """
 input names_min_order_by {
   color: order_by
+  disease_id: order_by
   id: order_by
   name: order_by
   number: order_by
@@ -240,6 +612,8 @@ ordering options when selecting data from "names"
 """
 input names_order_by {
   color: order_by
+  disease: disease_order_by
+  disease_id: order_by
   id: order_by
   name: order_by
   number: order_by
@@ -251,6 +625,9 @@ select columns of table "names"
 enum names_select_column {
   """column name"""
   color
+
+  """column name"""
+  disease_id
 
   """column name"""
   id
@@ -267,6 +644,7 @@ input type for updating data in table "names"
 """
 input names_set_input {
   color: String
+  disease_id: Int
   id: Int
   name: String
   number: Int
@@ -274,6 +652,7 @@ input names_set_input {
 
 """aggregate stddev on columns"""
 type names_stddev_fields {
+  disease_id: Float
   id: Float
   number: Float
 }
@@ -282,12 +661,14 @@ type names_stddev_fields {
 order by stddev() on columns of table "names"
 """
 input names_stddev_order_by {
+  disease_id: order_by
   id: order_by
   number: order_by
 }
 
 """aggregate stddev_pop on columns"""
 type names_stddev_pop_fields {
+  disease_id: Float
   id: Float
   number: Float
 }
@@ -296,12 +677,14 @@ type names_stddev_pop_fields {
 order by stddev_pop() on columns of table "names"
 """
 input names_stddev_pop_order_by {
+  disease_id: order_by
   id: order_by
   number: order_by
 }
 
 """aggregate stddev_samp on columns"""
 type names_stddev_samp_fields {
+  disease_id: Float
   id: Float
   number: Float
 }
@@ -310,12 +693,14 @@ type names_stddev_samp_fields {
 order by stddev_samp() on columns of table "names"
 """
 input names_stddev_samp_order_by {
+  disease_id: order_by
   id: order_by
   number: order_by
 }
 
 """aggregate sum on columns"""
 type names_sum_fields {
+  disease_id: Int
   id: Int
   number: Int
 }
@@ -324,6 +709,7 @@ type names_sum_fields {
 order by sum() on columns of table "names"
 """
 input names_sum_order_by {
+  disease_id: order_by
   id: order_by
   number: order_by
 }
@@ -334,6 +720,9 @@ update columns of table "names"
 enum names_update_column {
   """column name"""
   color
+
+  """column name"""
+  disease_id
 
   """column name"""
   id
@@ -347,6 +736,7 @@ enum names_update_column {
 
 """aggregate var_pop on columns"""
 type names_var_pop_fields {
+  disease_id: Float
   id: Float
   number: Float
 }
@@ -355,12 +745,14 @@ type names_var_pop_fields {
 order by var_pop() on columns of table "names"
 """
 input names_var_pop_order_by {
+  disease_id: order_by
   id: order_by
   number: order_by
 }
 
 """aggregate var_samp on columns"""
 type names_var_samp_fields {
+  disease_id: Float
   id: Float
   number: Float
 }
@@ -369,12 +761,14 @@ type names_var_samp_fields {
 order by var_samp() on columns of table "names"
 """
 input names_var_samp_order_by {
+  disease_id: order_by
   id: order_by
   number: order_by
 }
 
 """aggregate variance on columns"""
 type names_variance_fields {
+  disease_id: Float
   id: Float
   number: Float
 }
@@ -383,6 +777,7 @@ type names_variance_fields {
 order by variance() on columns of table "names"
 """
 input names_variance_order_by {
+  disease_id: order_by
   id: order_by
   number: order_by
 }
@@ -410,6 +805,49 @@ enum order_by {
 
 """query root"""
 type query_root {
+  """
+  fetch data from the table: "disease"
+  """
+  disease(
+    """distinct select on columns"""
+    distinct_on: [disease_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [disease_order_by!]
+
+    """filter the rows returned"""
+    where: disease_bool_exp
+  ): [disease!]!
+
+  """
+  fetch aggregated fields from the table: "disease"
+  """
+  disease_aggregate(
+    """distinct select on columns"""
+    distinct_on: [disease_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [disease_order_by!]
+
+    """filter the rows returned"""
+    where: disease_bool_exp
+  ): disease_aggregate!
+
+  """fetch data from the table: "disease" using primary key columns"""
+  disease_by_pk(id: Int!): disease
+
   """
   fetch data from the table: "names"
   """
@@ -477,6 +915,49 @@ input String_comparison_exp {
 
 """subscription root"""
 type subscription_root {
+  """
+  fetch data from the table: "disease"
+  """
+  disease(
+    """distinct select on columns"""
+    distinct_on: [disease_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [disease_order_by!]
+
+    """filter the rows returned"""
+    where: disease_bool_exp
+  ): [disease!]!
+
+  """
+  fetch aggregated fields from the table: "disease"
+  """
+  disease_aggregate(
+    """distinct select on columns"""
+    distinct_on: [disease_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [disease_order_by!]
+
+    """filter the rows returned"""
+    where: disease_bool_exp
+  ): disease_aggregate!
+
+  """fetch data from the table: "disease" using primary key columns"""
+  disease_by_pk(id: Int!): disease
+
   """
   fetch data from the table: "names"
   """

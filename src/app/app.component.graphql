@@ -7,6 +7,17 @@ query Names {
   }
 }
 
+query NameAndDisease {
+  names {
+    name
+    id
+    color
+    disease {
+      disease
+    }
+  }
+}
+
 subscription NamesSubscription {
   names {
     id

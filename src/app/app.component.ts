@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { NamesGQL, NamesSubscriptionGQL, AddNameGQL, DelNameGQL } from '../generated/types.graphql-gen';
 
 @Component({
-  selector: 'app-names',
+  selector: 'app-root',
   template: `<h3>apollo-hasura-learning</h3>
 <p>
   <input #newName />
