@@ -1,5 +1,5 @@
 # source: http://localhost:8080/v1/graphql
-# timestamp: Sat Apr 04 2020 12:49:18 GMT+0800 (Australian Western Standard Time)
+# timestamp: Sat Apr 04 2020 13:27:42 GMT+0800 (Australian Western Standard Time)
 
 schema {
   query: query_root
@@ -11,7 +11,7 @@ schema {
 columns and relationships of "disease"
 """
 type disease {
-  disease: String!
+  description: String!
   id: Int!
 
   """An array relationship"""
@@ -120,7 +120,7 @@ input disease_bool_exp {
   _and: [disease_bool_exp]
   _not: disease_bool_exp
   _or: [disease_bool_exp]
-  disease: String_comparison_exp
+  description: String_comparison_exp
   id: Int_comparison_exp
   names: names_bool_exp
 }
@@ -147,14 +147,14 @@ input disease_inc_input {
 input type for inserting data into table "disease"
 """
 input disease_insert_input {
-  disease: String
+  description: String
   id: Int
   names: names_arr_rel_insert_input
 }
 
 """aggregate max on columns"""
 type disease_max_fields {
-  disease: String
+  description: String
   id: Int
 }
 
@@ -162,13 +162,13 @@ type disease_max_fields {
 order by max() on columns of table "disease"
 """
 input disease_max_order_by {
-  disease: order_by
+  description: order_by
   id: order_by
 }
 
 """aggregate min on columns"""
 type disease_min_fields {
-  disease: String
+  description: String
   id: Int
 }
 
@@ -176,7 +176,7 @@ type disease_min_fields {
 order by min() on columns of table "disease"
 """
 input disease_min_order_by {
-  disease: order_by
+  description: order_by
   id: order_by
 }
 
@@ -212,7 +212,7 @@ input disease_on_conflict {
 ordering options when selecting data from "disease"
 """
 input disease_order_by {
-  disease: order_by
+  description: order_by
   id: order_by
   names_aggregate: names_aggregate_order_by
 }
@@ -222,7 +222,7 @@ select columns of table "disease"
 """
 enum disease_select_column {
   """column name"""
-  disease
+  description
 
   """column name"""
   id
@@ -232,7 +232,7 @@ enum disease_select_column {
 input type for updating data in table "disease"
 """
 input disease_set_input {
-  disease: String
+  description: String
   id: Int
 }
 
@@ -289,7 +289,7 @@ update columns of table "disease"
 """
 enum disease_update_column {
   """column name"""
-  disease
+  description
 
   """column name"""
   id

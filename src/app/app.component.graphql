@@ -13,7 +13,7 @@ query NameAndDisease {
     id
     color
     disease {
-      disease
+      description
     }
   }
 }
@@ -24,6 +24,17 @@ subscription NamesSubscription {
     name
     number
     color
+  }
+}
+
+subscription NameAndDiseaseSubscription {
+  names {
+    name
+    id
+    color
+    disease {
+      description
+    }
   }
 }
 

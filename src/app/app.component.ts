@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { NamesGQL, NamesSubscriptionGQL, AddNameGQL, DelNameGQL } from '../generated/types.graphql-gen';
+import { NamesGQL, NamesSubscriptionGQL, AddNameGQL, DelNameGQL, NameAndDiseaseGQL, NameAndDiseaseSubscriptionGQL } from '../generated/types.graphql-gen';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +27,10 @@ import { NamesGQL, NamesSubscriptionGQL, AddNameGQL, DelNameGQL } from '../gener
   Number:
   {{
     item.number
+  }}
+  Disease:
+  {{
+    item.disease ? item.disease.description : ""
   }}
   <button (click)="delName(item.id)">delete</button>
 </ul>
@@ -60,8 +64,8 @@ export class AppComponent implements OnInit {
   title = 'graphql-angular-learning';
 
   constructor(
-    private namesGQL: NamesGQL,
-    private namesSubscriptionGQL: NamesSubscriptionGQL,
+    private namesGQL: NameAndDiseaseGQL,
+    private namesSubscriptionGQL: NameAndDiseaseSubscriptionGQL,
     private addNameGQL: AddNameGQL,
     private delNameGQL: DelNameGQL) {
   }
