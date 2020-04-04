@@ -32,8 +32,9 @@ export class AppComponent implements OnInit {
     this.diseases$ = this.diseasesGQL.fetch().pipe(map(result => result.data.disease));
   }
 
-  addName(newName: string, newColor: string, newNumber: number) {
-    this.addNameGQL.mutate({ name: newName, number: newNumber, color: newColor }).subscribe(x => console.log(JSON.stringify(x)));
+  addName(newName: string, newColor: string, newNumber: number, newDisease?: number) {
+    // tslint:disable-next-line: max-line-length
+    this.addNameGQL.mutate({ name: newName, number: newNumber, color: newColor, disease_id: newDisease }).subscribe(x => console.log(JSON.stringify(x)));
   }
 
   delName(id: number | string) {

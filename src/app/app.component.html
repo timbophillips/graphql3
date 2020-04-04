@@ -10,13 +10,22 @@
     <label>number </label>
     <input #newNumber />
     <label>disease</label>
-    <select>
+    <select #newDisease>
       <option *ngFor="let item of diseases$ | async" [value]="item.id">
         {{ item.description }}
       </option>
     </select>
 
-    <button (click)="addName(newName.value, newColor.value, newNumber.value)">
+    <button
+      (click)="
+        addName(
+          newName.value,
+          newColor.value,
+          newNumber.value,
+          newDisease.value
+        )
+      "
+    >
       Add new name
     </button>
   </p>
@@ -34,7 +43,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of namesSub$ | async ">
+      <tr *ngFor="let item of namesSub$ | async">
         <td>{{ item.id }}</td>
         <td>
           {{ item.name }}

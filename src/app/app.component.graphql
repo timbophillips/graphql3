@@ -46,9 +46,9 @@ subscription NameAndDiseaseSubscription {
   }
 }
 
-mutation addName($name: String, $number: Int = 0, $color: String = "black") {
+mutation addName($name: String, $number: Int = 0, $color: String = "black", $disease_id: Int = 2) {
   __typename
-  insert_names(objects: {color: $color, name: $name, number: $number}) {
+  insert_names(objects: {color: $color, name: $name, number: $number, disease_id: $disease_id}) {
     returning {
       id
     }
