@@ -10,7 +10,7 @@
     "gql:update-schema": "graphql get-schema -e default",
     "gql:codegen:watch": "graphql-codegen --watch",
     "gql:codegen": "graphql-codegen --config codegen.yml",
-    "start:ng": "ng serve",
+    "start:ng": "ng serve --host 0.0.0.0 --port 4201",
     "start": "run-p start:ng gql:codegen:watch"
   },
   "private": true,
@@ -34,6 +34,7 @@
     "rxjs": "~6.5.4",
     "subscriptions-transport-ws": "^0.9.16",
     "tslib": "^1.10.0",
+    "vanilla-framework": "^2.9.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

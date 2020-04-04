@@ -1,44 +1,66 @@
-<h3>apollo-hasura-learning</h3>
+<div style="padding: 20px">
+  <h3>apollo-hasura-learning</h3>
+
 <p>
   <label>name </label>
   <input #newName />
-  <br />
+
   <label>color </label>
   <input #newColor />
-  <br />
   <label>number </label>
   <input #newNumber />
-  <br />
   <label>disease</label>
   <select>
     <option *ngFor="let item of diseases$ | async">
       {{ item.description }}
     </option>
   </select>
-  <br />
+
   <button (click)="addName(newName.value, newColor.value, newNumber.value)">
     Add new name
   </button>
 </p>
-<ul *ngFor="let item of namesSub$ | async | select: 'names'">
-  ID:{{
+</div>
+<div style="padding: 20px;">
+<table style="width:100%">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Color</th>
+    <th>Number</th>
+    <th>Disease</th>
+    <th>action</th>
+  </tr>
+</thead>
+<tbody>
+<tr *ngFor="let item of namesSub$ | async | select: 'names'">
+  <td>{{
     item.id
-  }}
-  Name:
+  }}</td>
+  <td>
   {{
     item.name
   }}
-  Color:
+  </td><td>
   {{
     item.color
   }}
-  Number:
+  </td>
+  <td>
   {{
     item.number
   }}
-  Disease:
-  {{
+</td>
+<td>
+{{
     item.disease ? item.disease.description : ""
   }}
+  </td>
+  <td>
   <button (click)="delName(item.id)">delete</button>
-</ul>
+  </td>
+</tr>
+</tbody>
+</table>
+</div>

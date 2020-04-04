@@ -6,25 +6,6 @@ import { NamesGQL, NamesSubscriptionGQL, AddNameGQL, DelNameGQL, NameAndDiseaseG
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styles: [
-    `
-      h3 {
-        font-family: monospace;
-        color: blue;
-        margin-left: 40px;
-      }
-      p {
-        font-family: monospace;
-        margin-left: 40px;
-      }
-      ul,
-      button,
-      input {
-        font-family: monospace;
-        margin-right: 5px;
-      }
-    `
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
