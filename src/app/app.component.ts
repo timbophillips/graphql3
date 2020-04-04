@@ -1,40 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { NamesGQL, NamesSubscriptionGQL, AddNameGQL, DelNameGQL, NameAndDiseaseGQL, NameAndDiseaseSubscriptionGQL } from '../generated/types.graphql-gen';
+import { NamesGQL, NamesSubscriptionGQL, AddNameGQL, DelNameGQL, NameAndDiseaseGQL, NameAndDiseaseSubscriptionGQL, DiseasesGQL, Disease } from '../generated/types.graphql-gen';
 
 @Component({
   selector: 'app-root',
-  template: `<h3>apollo-hasura-learning</h3>
-<p>
-  <input #newName />
-  <input #newColor />
-  <input #newNumber />
-  <button (click)="addName(newName.value, newColor.value, newNumber.value)">Add new name</button>
-</p>
-<ul *ngFor="let item of namesSub$ | async | select: 'names'">
-  ID:{{
-    item.id
-  }}
-  Name:
-  {{
-    item.name
-  }}
-  Color:
-  {{
-    item.color
-  }}
-  Number:
-  {{
-    item.number
-  }}
-  Disease:
-  {{
-    item.disease ? item.disease.description : ""
-  }}
-  <button (click)="delName(item.id)">delete</button>
-</ul>
-`,
+  templateUrl: 'app.component.html',
   styles: [
     `
       h3 {
@@ -60,10 +31,12 @@ export class AppComponent implements OnInit {
 
   names$: Observable<string[]>;
   namesSub$: Observable<{}>;
+  diseases$: Observable<Disease[]>;
 
   title = 'graphql-angular-learning';
 
   constructor(
+    private diseasesGQL: DiseasesGQL,
     private namesGQL: NameAndDiseaseGQL,
     private namesSubscriptionGQL: NameAndDiseaseSubscriptionGQL,
     private addNameGQL: AddNameGQL,
@@ -75,6 +48,7 @@ export class AppComponent implements OnInit {
       map(result => result.data.names.map(x => x.name))
     );
     this.namesSub$ = this.namesSubscriptionGQL.subscribe();
+    this.diseases$ = this.diseasesGQL.fetch().pipe(map(result => result.data.disease));
   }
 
   addName(newName: string, newColor: string, newNumber: number) {

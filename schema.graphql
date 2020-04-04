@@ -1,5 +1,5 @@
 # source: http://localhost:8080/v1/graphql
-# timestamp: Sat Apr 04 2020 13:27:42 GMT+0800 (Australian Western Standard Time)
+# timestamp: Sat Apr 04 2020 14:07:09 GMT+0800 (Australian Western Standard Time)
 
 schema {
   query: query_root
@@ -13,42 +13,6 @@ columns and relationships of "disease"
 type disease {
   description: String!
   id: Int!
-
-  """An array relationship"""
-  names(
-    """distinct select on columns"""
-    distinct_on: [names_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [names_order_by!]
-
-    """filter the rows returned"""
-    where: names_bool_exp
-  ): [names!]!
-
-  """An aggregated array relationship"""
-  names_aggregate(
-    """distinct select on columns"""
-    distinct_on: [names_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [names_order_by!]
-
-    """filter the rows returned"""
-    where: names_bool_exp
-  ): names_aggregate!
 }
 
 """
@@ -122,7 +86,6 @@ input disease_bool_exp {
   _or: [disease_bool_exp]
   description: String_comparison_exp
   id: Int_comparison_exp
-  names: names_bool_exp
 }
 
 """
@@ -149,7 +112,6 @@ input type for inserting data into table "disease"
 input disease_insert_input {
   description: String
   id: Int
-  names: names_arr_rel_insert_input
 }
 
 """aggregate max on columns"""
@@ -214,7 +176,6 @@ ordering options when selecting data from "disease"
 input disease_order_by {
   description: order_by
   id: order_by
-  names_aggregate: names_aggregate_order_by
 }
 
 """

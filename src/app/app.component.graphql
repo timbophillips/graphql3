@@ -18,6 +18,13 @@ query NameAndDisease {
   }
 }
 
+query Diseases {
+  disease {
+    id
+    description
+  }
+}
+
 subscription NamesSubscription {
   names {
     id
