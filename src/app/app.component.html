@@ -1,21 +1,29 @@
 <div style="padding: 20px;">
   <h3>apollo-hasura-learning</h3>
 
-  <p>
-    <label>name </label>
-    <input #newName />
+  <form>
+    <label>name</label>
+    <input type="text" required #newName />
+    <label>color</label> <input list="colors" required type="text" #newColor />
 
-    <label>color </label>
-    <input #newColor />
-    <label>number </label>
-    <input #newNumber />
+    <datalist id="colors">
+      <option value="Black"> </option>
+      <option value="White"> </option>
+      <option value="Red"> </option>
+      <option value="Orange"> </option>
+      <option value="Purple"> </option>
+    </datalist>
+
+    <label>number</label>
+    <input type="text" #newNumber type="number" required />
     <label>disease</label>
-    <select #newDisease>
+    <select #newDisease required>
+      <option value=""> - </option>
       <option *ngFor="let item of diseases$ | async" [value]="item.id">
         {{ item.description }}
       </option>
     </select>
-
+<label> </label>
     <button
       (click)="
         addName(
@@ -26,9 +34,9 @@
         )
       "
     >
-      Add new name
+      Add new person to database
     </button>
-  </p>
+  </form>
 </div>
 <div style="padding: 20px;">
   <table style="width: 100%;">

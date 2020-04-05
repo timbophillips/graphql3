@@ -30,6 +30,9 @@ export class AppComponent implements OnInit {
     );
     this.namesSub$ = this.namesSubscriptionGQL.subscribe().pipe(map(result => result.data.names));
     this.diseases$ = this.diseasesGQL.fetch().pipe(map(result => result.data.disease));
+
+    // debug
+    this.namesGQL.fetch({}).subscribe(x => console.log(x));
   }
 
   addName(newName: string, newColor: string, newNumber: number, newDisease?: number) {

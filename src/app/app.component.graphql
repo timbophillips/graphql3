@@ -52,7 +52,7 @@ mutation addName($name: String, $number: Int = 0, $color: String = "black", $dis
     returning {
       id
     }
-  }
+  } 
 }
 
 mutation delName($id: Int) {
