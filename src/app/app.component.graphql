@@ -24,6 +24,8 @@ query Diseases {
     id
     names {
       name
+      id
+      color 
     }
   }
 }
