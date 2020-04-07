@@ -1,5 +1,5 @@
 # source: http://localhost:8080/v1/graphql
-# timestamp: Sat Apr 04 2020 19:50:21 GMT+0800 (Australian Western Standard Time)
+# timestamp: Tue Apr 07 2020 11:31:26 GMT+0800 (Australian Western Standard Time)
 
 schema {
   query: query_root
@@ -8,11 +8,346 @@ schema {
 }
 
 """
+columns and relationships of "cases"
+"""
+type cases {
+  id: Int!
+  patient_id: Int!
+}
+
+"""
+aggregated selection of "cases"
+"""
+type cases_aggregate {
+  aggregate: cases_aggregate_fields
+  nodes: [cases!]!
+}
+
+"""
+aggregate fields of "cases"
+"""
+type cases_aggregate_fields {
+  avg: cases_avg_fields
+  count(columns: [cases_select_column!], distinct: Boolean): Int
+  max: cases_max_fields
+  min: cases_min_fields
+  stddev: cases_stddev_fields
+  stddev_pop: cases_stddev_pop_fields
+  stddev_samp: cases_stddev_samp_fields
+  sum: cases_sum_fields
+  var_pop: cases_var_pop_fields
+  var_samp: cases_var_samp_fields
+  variance: cases_variance_fields
+}
+
+"""
+order by aggregate values of table "cases"
+"""
+input cases_aggregate_order_by {
+  avg: cases_avg_order_by
+  count: order_by
+  max: cases_max_order_by
+  min: cases_min_order_by
+  stddev: cases_stddev_order_by
+  stddev_pop: cases_stddev_pop_order_by
+  stddev_samp: cases_stddev_samp_order_by
+  sum: cases_sum_order_by
+  var_pop: cases_var_pop_order_by
+  var_samp: cases_var_samp_order_by
+  variance: cases_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "cases"
+"""
+input cases_arr_rel_insert_input {
+  data: [cases_insert_input!]!
+  on_conflict: cases_on_conflict
+}
+
+"""aggregate avg on columns"""
+type cases_avg_fields {
+  id: Float
+  patient_id: Float
+}
+
+"""
+order by avg() on columns of table "cases"
+"""
+input cases_avg_order_by {
+  id: order_by
+  patient_id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "cases". All fields are combined with a logical 'AND'.
+"""
+input cases_bool_exp {
+  _and: [cases_bool_exp]
+  _not: cases_bool_exp
+  _or: [cases_bool_exp]
+  id: Int_comparison_exp
+  patient_id: Int_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "cases"
+"""
+enum cases_constraint {
+  """unique or primary key constraint"""
+  cases_pkey
+}
+
+"""
+input type for incrementing integer columne in table "cases"
+"""
+input cases_inc_input {
+  id: Int
+  patient_id: Int
+}
+
+"""
+input type for inserting data into table "cases"
+"""
+input cases_insert_input {
+  id: Int
+  patient_id: Int
+}
+
+"""aggregate max on columns"""
+type cases_max_fields {
+  id: Int
+  patient_id: Int
+}
+
+"""
+order by max() on columns of table "cases"
+"""
+input cases_max_order_by {
+  id: order_by
+  patient_id: order_by
+}
+
+"""aggregate min on columns"""
+type cases_min_fields {
+  id: Int
+  patient_id: Int
+}
+
+"""
+order by min() on columns of table "cases"
+"""
+input cases_min_order_by {
+  id: order_by
+  patient_id: order_by
+}
+
+"""
+response of any mutation on the table "cases"
+"""
+type cases_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [cases!]!
+}
+
+"""
+input type for inserting object relation for remote table "cases"
+"""
+input cases_obj_rel_insert_input {
+  data: cases_insert_input!
+  on_conflict: cases_on_conflict
+}
+
+"""
+on conflict condition type for table "cases"
+"""
+input cases_on_conflict {
+  constraint: cases_constraint!
+  update_columns: [cases_update_column!]!
+  where: cases_bool_exp
+}
+
+"""
+ordering options when selecting data from "cases"
+"""
+input cases_order_by {
+  id: order_by
+  patient_id: order_by
+}
+
+"""
+select columns of table "cases"
+"""
+enum cases_select_column {
+  """column name"""
+  id
+
+  """column name"""
+  patient_id
+}
+
+"""
+input type for updating data in table "cases"
+"""
+input cases_set_input {
+  id: Int
+  patient_id: Int
+}
+
+"""aggregate stddev on columns"""
+type cases_stddev_fields {
+  id: Float
+  patient_id: Float
+}
+
+"""
+order by stddev() on columns of table "cases"
+"""
+input cases_stddev_order_by {
+  id: order_by
+  patient_id: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type cases_stddev_pop_fields {
+  id: Float
+  patient_id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "cases"
+"""
+input cases_stddev_pop_order_by {
+  id: order_by
+  patient_id: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type cases_stddev_samp_fields {
+  id: Float
+  patient_id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "cases"
+"""
+input cases_stddev_samp_order_by {
+  id: order_by
+  patient_id: order_by
+}
+
+"""aggregate sum on columns"""
+type cases_sum_fields {
+  id: Int
+  patient_id: Int
+}
+
+"""
+order by sum() on columns of table "cases"
+"""
+input cases_sum_order_by {
+  id: order_by
+  patient_id: order_by
+}
+
+"""
+update columns of table "cases"
+"""
+enum cases_update_column {
+  """column name"""
+  id
+
+  """column name"""
+  patient_id
+}
+
+"""aggregate var_pop on columns"""
+type cases_var_pop_fields {
+  id: Float
+  patient_id: Float
+}
+
+"""
+order by var_pop() on columns of table "cases"
+"""
+input cases_var_pop_order_by {
+  id: order_by
+  patient_id: order_by
+}
+
+"""aggregate var_samp on columns"""
+type cases_var_samp_fields {
+  id: Float
+  patient_id: Float
+}
+
+"""
+order by var_samp() on columns of table "cases"
+"""
+input cases_var_samp_order_by {
+  id: order_by
+  patient_id: order_by
+}
+
+"""aggregate variance on columns"""
+type cases_variance_fields {
+  id: Float
+  patient_id: Float
+}
+
+"""
+order by variance() on columns of table "cases"
+"""
+input cases_variance_order_by {
+  id: order_by
+  patient_id: order_by
+}
+
+"""
 columns and relationships of "disease"
 """
 type disease {
   description: String!
   id: Int!
+
+  """An array relationship"""
+  names(
+    """distinct select on columns"""
+    distinct_on: [names_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [names_order_by!]
+
+    """filter the rows returned"""
+    where: names_bool_exp
+  ): [names!]!
+
+  """An aggregated array relationship"""
+  names_aggregate(
+    """distinct select on columns"""
+    distinct_on: [names_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [names_order_by!]
+
+    """filter the rows returned"""
+    where: names_bool_exp
+  ): names_aggregate!
 }
 
 """
@@ -86,6 +421,7 @@ input disease_bool_exp {
   _or: [disease_bool_exp]
   description: String_comparison_exp
   id: Int_comparison_exp
+  names: names_bool_exp
 }
 
 """
@@ -112,6 +448,7 @@ input type for inserting data into table "disease"
 input disease_insert_input {
   description: String
   id: Int
+  names: names_arr_rel_insert_input
 }
 
 """aggregate max on columns"""
@@ -176,6 +513,7 @@ ordering options when selecting data from "disease"
 input disease_order_by {
   description: order_by
   id: order_by
+  names_aggregate: names_aggregate_order_by
 }
 
 """
@@ -310,6 +648,14 @@ input Int_comparison_exp {
 """mutation root"""
 type mutation_root {
   """
+  delete data from the table: "cases"
+  """
+  delete_cases(
+    """filter the rows which have to be deleted"""
+    where: cases_bool_exp!
+  ): cases_mutation_response
+
+  """
   delete data from the table: "disease"
   """
   delete_disease(
@@ -324,6 +670,25 @@ type mutation_root {
     """filter the rows which have to be deleted"""
     where: names_bool_exp!
   ): names_mutation_response
+
+  """
+  delete data from the table: "operations"
+  """
+  delete_operations(
+    """filter the rows which have to be deleted"""
+    where: operations_bool_exp!
+  ): operations_mutation_response
+
+  """
+  insert data into the table: "cases"
+  """
+  insert_cases(
+    """the rows to be inserted"""
+    objects: [cases_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: cases_on_conflict
+  ): cases_mutation_response
 
   """
   insert data into the table: "disease"
@@ -346,6 +711,31 @@ type mutation_root {
     """on conflict condition"""
     on_conflict: names_on_conflict
   ): names_mutation_response
+
+  """
+  insert data into the table: "operations"
+  """
+  insert_operations(
+    """the rows to be inserted"""
+    objects: [operations_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: operations_on_conflict
+  ): operations_mutation_response
+
+  """
+  update data of the table: "cases"
+  """
+  update_cases(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: cases_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: cases_set_input
+
+    """filter the rows which have to be updated"""
+    where: cases_bool_exp!
+  ): cases_mutation_response
 
   """
   update data of the table: "disease"
@@ -374,6 +764,20 @@ type mutation_root {
     """filter the rows which have to be updated"""
     where: names_bool_exp!
   ): names_mutation_response
+
+  """
+  update data of the table: "operations"
+  """
+  update_operations(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: operations_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: operations_set_input
+
+    """filter the rows which have to be updated"""
+    where: operations_bool_exp!
+  ): operations_mutation_response
 }
 
 """
@@ -743,6 +1147,288 @@ input names_variance_order_by {
   number: order_by
 }
 
+"""
+columns and relationships of "operations"
+"""
+type operations {
+  description: String!
+  id: Int!
+}
+
+"""
+aggregated selection of "operations"
+"""
+type operations_aggregate {
+  aggregate: operations_aggregate_fields
+  nodes: [operations!]!
+}
+
+"""
+aggregate fields of "operations"
+"""
+type operations_aggregate_fields {
+  avg: operations_avg_fields
+  count(columns: [operations_select_column!], distinct: Boolean): Int
+  max: operations_max_fields
+  min: operations_min_fields
+  stddev: operations_stddev_fields
+  stddev_pop: operations_stddev_pop_fields
+  stddev_samp: operations_stddev_samp_fields
+  sum: operations_sum_fields
+  var_pop: operations_var_pop_fields
+  var_samp: operations_var_samp_fields
+  variance: operations_variance_fields
+}
+
+"""
+order by aggregate values of table "operations"
+"""
+input operations_aggregate_order_by {
+  avg: operations_avg_order_by
+  count: order_by
+  max: operations_max_order_by
+  min: operations_min_order_by
+  stddev: operations_stddev_order_by
+  stddev_pop: operations_stddev_pop_order_by
+  stddev_samp: operations_stddev_samp_order_by
+  sum: operations_sum_order_by
+  var_pop: operations_var_pop_order_by
+  var_samp: operations_var_samp_order_by
+  variance: operations_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "operations"
+"""
+input operations_arr_rel_insert_input {
+  data: [operations_insert_input!]!
+  on_conflict: operations_on_conflict
+}
+
+"""aggregate avg on columns"""
+type operations_avg_fields {
+  id: Float
+}
+
+"""
+order by avg() on columns of table "operations"
+"""
+input operations_avg_order_by {
+  id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "operations". All fields are combined with a logical 'AND'.
+"""
+input operations_bool_exp {
+  _and: [operations_bool_exp]
+  _not: operations_bool_exp
+  _or: [operations_bool_exp]
+  description: String_comparison_exp
+  id: Int_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "operations"
+"""
+enum operations_constraint {
+  """unique or primary key constraint"""
+  operations_pkey
+}
+
+"""
+input type for incrementing integer columne in table "operations"
+"""
+input operations_inc_input {
+  id: Int
+}
+
+"""
+input type for inserting data into table "operations"
+"""
+input operations_insert_input {
+  description: String
+  id: Int
+}
+
+"""aggregate max on columns"""
+type operations_max_fields {
+  description: String
+  id: Int
+}
+
+"""
+order by max() on columns of table "operations"
+"""
+input operations_max_order_by {
+  description: order_by
+  id: order_by
+}
+
+"""aggregate min on columns"""
+type operations_min_fields {
+  description: String
+  id: Int
+}
+
+"""
+order by min() on columns of table "operations"
+"""
+input operations_min_order_by {
+  description: order_by
+  id: order_by
+}
+
+"""
+response of any mutation on the table "operations"
+"""
+type operations_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [operations!]!
+}
+
+"""
+input type for inserting object relation for remote table "operations"
+"""
+input operations_obj_rel_insert_input {
+  data: operations_insert_input!
+  on_conflict: operations_on_conflict
+}
+
+"""
+on conflict condition type for table "operations"
+"""
+input operations_on_conflict {
+  constraint: operations_constraint!
+  update_columns: [operations_update_column!]!
+  where: operations_bool_exp
+}
+
+"""
+ordering options when selecting data from "operations"
+"""
+input operations_order_by {
+  description: order_by
+  id: order_by
+}
+
+"""
+select columns of table "operations"
+"""
+enum operations_select_column {
+  """column name"""
+  description
+
+  """column name"""
+  id
+}
+
+"""
+input type for updating data in table "operations"
+"""
+input operations_set_input {
+  description: String
+  id: Int
+}
+
+"""aggregate stddev on columns"""
+type operations_stddev_fields {
+  id: Float
+}
+
+"""
+order by stddev() on columns of table "operations"
+"""
+input operations_stddev_order_by {
+  id: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type operations_stddev_pop_fields {
+  id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "operations"
+"""
+input operations_stddev_pop_order_by {
+  id: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type operations_stddev_samp_fields {
+  id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "operations"
+"""
+input operations_stddev_samp_order_by {
+  id: order_by
+}
+
+"""aggregate sum on columns"""
+type operations_sum_fields {
+  id: Int
+}
+
+"""
+order by sum() on columns of table "operations"
+"""
+input operations_sum_order_by {
+  id: order_by
+}
+
+"""
+update columns of table "operations"
+"""
+enum operations_update_column {
+  """column name"""
+  description
+
+  """column name"""
+  id
+}
+
+"""aggregate var_pop on columns"""
+type operations_var_pop_fields {
+  id: Float
+}
+
+"""
+order by var_pop() on columns of table "operations"
+"""
+input operations_var_pop_order_by {
+  id: order_by
+}
+
+"""aggregate var_samp on columns"""
+type operations_var_samp_fields {
+  id: Float
+}
+
+"""
+order by var_samp() on columns of table "operations"
+"""
+input operations_var_samp_order_by {
+  id: order_by
+}
+
+"""aggregate variance on columns"""
+type operations_variance_fields {
+  id: Float
+}
+
+"""
+order by variance() on columns of table "operations"
+"""
+input operations_variance_order_by {
+  id: order_by
+}
+
 """column ordering options"""
 enum order_by {
   """in the ascending order, nulls last"""
@@ -766,6 +1452,49 @@ enum order_by {
 
 """query root"""
 type query_root {
+  """
+  fetch data from the table: "cases"
+  """
+  cases(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): [cases!]!
+
+  """
+  fetch aggregated fields from the table: "cases"
+  """
+  cases_aggregate(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): cases_aggregate!
+
+  """fetch data from the table: "cases" using primary key columns"""
+  cases_by_pk(id: Int!): cases
+
   """
   fetch data from the table: "disease"
   """
@@ -851,6 +1580,49 @@ type query_root {
 
   """fetch data from the table: "names" using primary key columns"""
   names_by_pk(id: Int!): names
+
+  """
+  fetch data from the table: "operations"
+  """
+  operations(
+    """distinct select on columns"""
+    distinct_on: [operations_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [operations_order_by!]
+
+    """filter the rows returned"""
+    where: operations_bool_exp
+  ): [operations!]!
+
+  """
+  fetch aggregated fields from the table: "operations"
+  """
+  operations_aggregate(
+    """distinct select on columns"""
+    distinct_on: [operations_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [operations_order_by!]
+
+    """filter the rows returned"""
+    where: operations_bool_exp
+  ): operations_aggregate!
+
+  """fetch data from the table: "operations" using primary key columns"""
+  operations_by_pk(id: Int!): operations
 }
 
 """
@@ -877,6 +1649,49 @@ input String_comparison_exp {
 """subscription root"""
 type subscription_root {
   """
+  fetch data from the table: "cases"
+  """
+  cases(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): [cases!]!
+
+  """
+  fetch aggregated fields from the table: "cases"
+  """
+  cases_aggregate(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): cases_aggregate!
+
+  """fetch data from the table: "cases" using primary key columns"""
+  cases_by_pk(id: Int!): cases
+
+  """
   fetch data from the table: "disease"
   """
   disease(
@@ -961,4 +1776,47 @@ type subscription_root {
 
   """fetch data from the table: "names" using primary key columns"""
   names_by_pk(id: Int!): names
+
+  """
+  fetch data from the table: "operations"
+  """
+  operations(
+    """distinct select on columns"""
+    distinct_on: [operations_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [operations_order_by!]
+
+    """filter the rows returned"""
+    where: operations_bool_exp
+  ): [operations!]!
+
+  """
+  fetch aggregated fields from the table: "operations"
+  """
+  operations_aggregate(
+    """distinct select on columns"""
+    distinct_on: [operations_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [operations_order_by!]
+
+    """filter the rows returned"""
+    where: operations_bool_exp
+  ): operations_aggregate!
+
+  """fetch data from the table: "operations" using primary key columns"""
+  operations_by_pk(id: Int!): operations
 }
