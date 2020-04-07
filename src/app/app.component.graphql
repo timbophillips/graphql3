@@ -20,8 +20,8 @@ query NameAndDisease {
 
 query Diseases {
   disease {
-    id
     description
+    id
   }
 }
 
@@ -46,18 +46,30 @@ subscription NameAndDiseaseSubscription {
   }
 }
 
-mutation addName($name: String, $number: Int = 0, $color: String = "black", $disease_id: Int = 2) {
+mutation addName(
+  $name: String
+  $number: Int = 0
+  $color: String = "black"
+  $disease_id: Int = 2
+) {
   __typename
-  insert_names(objects: {color: $color, name: $name, number: $number, disease_id: $disease_id}) {
+  insert_names(
+    objects: {
+      color: $color
+      name: $name
+      number: $number
+      disease_id: $disease_id
+    }
+  ) {
     returning {
       id
     }
-  } 
+  }
 }
 
 mutation delName($id: Int) {
   __typename
-  delete_names(where: {id: {_eq: $id}}) {
+  delete_names(where: { id: { _eq: $id } }) {
     returning {
       id
     }

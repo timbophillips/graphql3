@@ -1,5 +1,5 @@
 # source: http://localhost:8080/v1/graphql
-# timestamp: Tue Apr 07 2020 11:31:26 GMT+0800 (Australian Western Standard Time)
+# timestamp: Tue Apr 07 2020 11:43:57 GMT+0800 (Australian Western Standard Time)
 
 schema {
   query: query_root
