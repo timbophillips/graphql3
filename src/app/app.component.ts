@@ -17,9 +17,9 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-  names$: Observable<Names[]>;
-  namesSub$: Observable<Names[]>;
-  diseases$: Observable<Pick<Disease, 'id' | 'description'>[]>;
+  names$: Observable<Partial<Names>[]>;
+  namesSub$: Observable<Partial<Names>[]>;
+  diseases$: Observable<Partial<Disease>[]>;
 
   title = 'graphql-angular-learning';
 

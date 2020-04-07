@@ -22,6 +22,9 @@ query Diseases {
   disease {
     description
     id
+    names {
+      name
+    }
   }
 }
 
