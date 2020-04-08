@@ -23,6 +23,8 @@ export class AppComponent implements OnInit {
 
   title = 'graphql-angular-learning';
 
+  colOptions: string[] = ['red', 'blue', 'green', 'yellow', 'purple'];
+
   constructor(
     private diseasesGQL: DiseasesGQL,
     private namesGQL: NameAndDiseaseGQL,
