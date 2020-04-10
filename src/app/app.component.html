@@ -2,6 +2,9 @@
   <h3>apollo-hasura-learning</h3>
 
   <form>
+    <label>Extra</label>
+    <ng-filter-select [options]="options"></ng-filter-select>
+
     <label>name</label>
     <input type="text" required #newName />
     <label>color</label> <input list="colors" required type="text" #newColor />
@@ -74,5 +77,4 @@
   </table>
 </div>
 <div>
-  <ng-filter-select [options]="options"></ng-filter-select>
 </div>
