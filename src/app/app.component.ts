@@ -24,23 +24,7 @@ export class AppComponent implements OnInit {
 
   title = 'graphql-angular-learning';
 
-  options = [
-    { text: "Tim", id: "TP" },
-    { text: "Ben", id: "BP" },
-    { text: "Katie", id: "KP" },
-    { text: "John", id: "JP" },
-    { text: "Sue", id: "SP" },
-    { text: "Sarah", id: "SR" },
-    { text: "Claire", id: "CB" },
-    { text: "Drew", id: "AM" },
-    { text: "Molly", id: "MP" },
-    { text: "Lucy", id: "LP" },
-    { text: "Jess", id: "JP2" },
-    { text: "George", id: "GP" },
-    { text: "Daisy", id: "DM" },
-    { text: "Benny", id: "BP2" }
-  ];
-
+  colOptions: string[] = ['red', 'blue', 'green', 'yellow', 'purple'];
 
   constructor(
     private diseasesGQL: DiseasesGQL,
