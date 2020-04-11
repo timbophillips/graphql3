@@ -21,7 +21,7 @@
     <label>number</label>
     <input type="text" #newNumber type="number" required />
     <label>disease</label>
-    <select #newDisease required>
+    <select #newDisease required size="10">
       <option value=""> - </option>
       <option *ngFor="let item of diseases$ | async" [value]="item.id">
         {{ item.description }}
