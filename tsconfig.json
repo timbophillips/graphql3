@@ -15,10 +15,11 @@
       "es2018",
       "dom",
       "esnext.asynciterable"
-    ]
+    ],
+    "preserveSymlinks": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
+    "strictInjectionParameters": true,
   }
 }
