@@ -27,20 +27,20 @@ export class AppComponent implements OnInit {
   colOptions: string[] = ['red', 'blue', 'green', 'yellow', 'purple'];
 
   options = [
-    { text: "Tim", id: "TP" },
-    { text: "Ben", id: "BP" },
-    { text: "Katie", id: "KP" },
-    { text: "John", id: "JP" },
-    { text: "Sue", id: "SP" },
-    { text: "Sarah", id: "SR" },
-    { text: "Claire", id: "CB" },
-    { text: "Drew", id: "AM" },
-    { text: "Molly", id: "MP" },
-    { text: "Lucy", id: "LP" },
-    { text: "Jess", id: "JP2" },
-    { text: "George", id: "GP" },
-    { text: "Daisy", id: "DM" },
-    { text: "Benny", id: "BP2" }
+    { text: 'Tim', id: 'TP' },
+    { text: 'Ben', id: 'BP' },
+    { text: 'Katie', id: 'KP' },
+    { text: 'John', id: 'JP' },
+    { text: 'Sue', id: 'SP' },
+    { text: 'Sarah', id: 'SR' },
+    { text: 'Claire', id: 'CB' },
+    { text: 'Drew', id: 'AM' },
+    { text: 'Molly', id: 'MP' },
+    { text: 'Lucy', id: 'LP' },
+    { text: 'Jess', id: 'JP2' },
+    { text: 'George', id: 'GP' },
+    { text: 'Daisy', id: 'DM' },
+    { text: 'Benny', id: 'BP2' }
   ];
 
   constructor(
