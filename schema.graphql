@@ -1,5 +1,5 @@
 # source: http://localhost:8080/v1/graphql
-# timestamp: Tue Apr 07 2020 11:43:57 GMT+0800 (Australian Western Standard Time)
+# timestamp: Sun Apr 19 2020 22:29:58 GMT+0800 (Australian Western Standard Time)
 
 schema {
   query: query_root
@@ -12,6 +12,9 @@ columns and relationships of "cases"
 """
 type cases {
   id: Int!
+
+  """An object relationship"""
+  name: names!
   patient_id: Int!
 }
 
@@ -87,6 +90,7 @@ input cases_bool_exp {
   _not: cases_bool_exp
   _or: [cases_bool_exp]
   id: Int_comparison_exp
+  name: names_bool_exp
   patient_id: Int_comparison_exp
 }
 
@@ -111,6 +115,7 @@ input type for inserting data into table "cases"
 """
 input cases_insert_input {
   id: Int
+  name: names_obj_rel_insert_input
   patient_id: Int
 }
 
@@ -175,6 +180,7 @@ ordering options when selecting data from "cases"
 """
 input cases_order_by {
   id: order_by
+  name: names_order_by
   patient_id: order_by
 }
 
@@ -784,6 +790,41 @@ type mutation_root {
 columns and relationships of "names"
 """
 type names {
+  """An array relationship"""
+  cases(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): [cases!]!
+
+  """An aggregated array relationship"""
+  cases_aggregate(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): cases_aggregate!
   color: String
 
   """An object relationship"""
@@ -867,6 +908,7 @@ input names_bool_exp {
   _and: [names_bool_exp]
   _not: names_bool_exp
   _or: [names_bool_exp]
+  cases: cases_bool_exp
   color: String_comparison_exp
   disease: disease_bool_exp
   disease_id: Int_comparison_exp
@@ -896,6 +938,7 @@ input names_inc_input {
 input type for inserting data into table "names"
 """
 input names_insert_input {
+  cases: cases_arr_rel_insert_input
   color: String
   disease: disease_obj_rel_insert_input
   disease_id: Int
@@ -976,6 +1019,7 @@ input names_on_conflict {
 ordering options when selecting data from "names"
 """
 input names_order_by {
+  cases_aggregate: cases_aggregate_order_by
   color: order_by
   disease: disease_order_by
   disease_id: order_by
