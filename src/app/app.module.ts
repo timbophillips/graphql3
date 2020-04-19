@@ -5,11 +5,11 @@ import { AppComponent } from './app.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 
-// import { NgFilterSelectModule } from 'ng-filter-select';
+import { FilteredSelectModule } from 'filtered-select';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, GraphQLModule, HttpClientModule],
+  imports: [BrowserModule, GraphQLModule, HttpClientModule, FilteredSelectModule],
   providers: [],
   bootstrap: [AppComponent]
 })

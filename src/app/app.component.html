@@ -18,6 +18,16 @@
       <option value="Purple"> </option>
     </datalist>
 
+    <filtered-select
+    [options]="options"
+    [lines]="8"
+    [backgroundColor]="'white'"
+    (chosenOption)="onResult($event)"
+    [grouped]=true
+  >
+  </filtered-select>
+
+
     <label>number</label>
     <input type="text" #newNumber type="number" required />
     <label>disease</label>

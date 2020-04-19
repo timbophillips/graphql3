@@ -11,6 +11,7 @@ import {
   Names
 } from '../generated/types.graphql-gen';
 
+import {option} from 'filtered-select';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,11 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
+  selectedOption: option;
+  onResult(id: option) {
+    this.selectedOption = id;
+  }
+
   names$: Observable<Partial<Names>[]>;
   namesSub$: Observable<Partial<Names>[]>;
   diseases$: Observable<Partial<Disease>[]>;
@@ -26,22 +32,25 @@ export class AppComponent implements OnInit {
 
   colOptions: string[] = ['red', 'blue', 'green', 'yellow', 'purple'];
 
-  options = [
-    { text: 'Tim', id: 'TP' },
-    { text: 'Ben', id: 'BP' },
-    { text: 'Katie', id: 'KP' },
-    { text: 'John', id: 'JP' },
-    { text: 'Sue', id: 'SP' },
-    { text: 'Sarah', id: 'SR' },
-    { text: 'Claire', id: 'CB' },
-    { text: 'Drew', id: 'AM' },
-    { text: 'Molly', id: 'MP' },
-    { text: 'Lucy', id: 'LP' },
-    { text: 'Jess', id: 'JP2' },
-    { text: 'George', id: 'GP' },
-    { text: 'Daisy', id: 'DM' },
-    { text: 'Benny', id: 'BP2' }
+  options: option[] = [
+    { text: 'Tim', id: 'TP', group: 'Parents' },
+    { text: 'Ben', id: 'BP', group: 'Parents' },
+    { text: 'Katie', id: 'KP', group: 'Parents' },
+    { text: 'John', id: 'JP', group: 'Grandparents' },
+    { text: 'Sue', id: 'SP', group: 'Grandparents' },
+    { text: 'Sarah', id: 'SR', group: 'Parents' },
+    { text: 'Claire', id: 'CB', group: 'Parents' },
+    { text: 'Drew', id: 'AM', group: 'Parents' },
+    { text: 'Molly', id: 'MP', group: 'Kids' },
+    { text: 'Lucy', id: 'LP', group: 'Kids' },
+    { text: 'Jess', id: 'JP2', group: 'Kids' },
+    { text: 'George', id: 'GP', group: 'Kids' },
+    { text: 'Daisy', id: 'DM', group: 'Kids' },
+    { text: 'Benny', id: 'BP', group: 'Nicknames' },
+    { text: 'Timbo', id: 'TP', group: 'Nicknames' },
+    { text: 'Richo', id: 'SR', group: 'Nicknames' },
   ];
+  
 
   constructor(
     private diseasesGQL: DiseasesGQL,
