@@ -25,8 +25,16 @@ query Diseases {
     names {
       name
       id
-      color 
+      color
     }
+  }
+}
+
+query Procedures {
+  procedures {
+    group
+    id
+    text
   }
 }
 

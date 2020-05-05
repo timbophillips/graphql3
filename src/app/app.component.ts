@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {
   AddNameGQL,
@@ -8,25 +8,25 @@ import {
   NameAndDiseaseSubscriptionGQL,
   DiseasesGQL,
   Disease,
-  Names
+  Names,
+  Procedures,
+  ProceduresGQL,
 } from '../generated/types.graphql-gen';
 
-import {option} from 'filtered-select';
+import { option } from 'filtered-select';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   selectedOption: option;
-  onResult(id: option) {
-    this.selectedOption = id;
-  }
 
   names$: Observable<Partial<Names>[]>;
   namesSub$: Observable<Partial<Names>[]>;
   diseases$: Observable<Partial<Disease>[]>;
+  procedures$: Observable<Partial<Procedures>[]>;
 
   title = 'graphql-angular-learning';
 
@@ -50,29 +50,29 @@ export class AppComponent implements OnInit {
     { text: 'Timbo', id: 'TP', group: 'Nicknames' },
     { text: 'Richo', id: 'SR', group: 'Nicknames' },
   ];
-  
 
   constructor(
     private diseasesGQL: DiseasesGQL,
     private namesGQL: NameAndDiseaseGQL,
     private namesSubscriptionGQL: NameAndDiseaseSubscriptionGQL,
     private addNameGQL: AddNameGQL,
-    private delNameGQL: DelNameGQL
+    private delNameGQL: DelNameGQL,
+    private proceduresGQL: ProceduresGQL
   ) {}
 
   ngOnInit() {
     this.names$ = this.namesGQL
       .fetch({})
-      .pipe(map(result => result.data.names));
+      .pipe(map((result) => result.data.names));
     this.namesSub$ = this.namesSubscriptionGQL
       .subscribe()
-      .pipe(map(result => result.data.names));
+      .pipe(map((result) => result.data.names));
     this.diseases$ = this.diseasesGQL
       .fetch()
-      .pipe(map(result => result.data.disease));
-
-    // debug
-    this.namesGQL.fetch({}).subscribe(x => console.log(x));
+      .pipe(map((result) => result.data.disease));
+    this.procedures$ = this.proceduresGQL
+      .fetch({})
+      .pipe(map((result) => result.data.procedures));
   }
 
   addName(
@@ -87,14 +87,18 @@ export class AppComponent implements OnInit {
         name: newName,
         number: newNumber,
         color: newColor,
-        disease_id: newDisease
+        disease_id: newDisease,
       })
-      .subscribe(x => console.log(JSON.stringify(x)));
+      .subscribe((x) => console.log(JSON.stringify(x)));
   }
 
   delName(id: number | string) {
     this.delNameGQL
       .mutate({ id: id as number })
-      .subscribe(x => console.log(JSON.stringify(x)));
+      .subscribe((x) => console.log(JSON.stringify(x)));
+  }
+
+  onResult(id: option) {
+    this.selectedOption = id;
   }
 }

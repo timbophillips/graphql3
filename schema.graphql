@@ -1,5 +1,5 @@
 # source: http://localhost:8080/v1/graphql
-# timestamp: Sun Apr 19 2020 22:29:58 GMT+0800 (Australian Western Standard Time)
+# timestamp: Tue May 05 2020 13:13:15 GMT+0800 (Australian Western Standard Time)
 
 schema {
   query: query_root
@@ -103,7 +103,7 @@ enum cases_constraint {
 }
 
 """
-input type for incrementing integer columne in table "cases"
+input type for incrementing integer column in table "cases"
 """
 input cases_inc_input {
   id: Int
@@ -182,6 +182,13 @@ input cases_order_by {
   id: order_by
   name: names_order_by
   patient_id: order_by
+}
+
+"""
+primary key columns input for table: "cases"
+"""
+input cases_pk_columns_input {
+  id: Int!
 }
 
 """
@@ -442,7 +449,7 @@ enum disease_constraint {
 }
 
 """
-input type for incrementing integer columne in table "disease"
+input type for incrementing integer column in table "disease"
 """
 input disease_inc_input {
   id: Int
@@ -520,6 +527,13 @@ input disease_order_by {
   description: order_by
   id: order_by
   names_aggregate: names_aggregate_order_by
+}
+
+"""
+primary key columns input for table: "disease"
+"""
+input disease_pk_columns_input {
+  id: Int!
 }
 
 """
@@ -662,12 +676,22 @@ type mutation_root {
   ): cases_mutation_response
 
   """
+  delete single row from the table: "cases"
+  """
+  delete_cases_by_pk(id: Int!): cases
+
+  """
   delete data from the table: "disease"
   """
   delete_disease(
     """filter the rows which have to be deleted"""
     where: disease_bool_exp!
   ): disease_mutation_response
+
+  """
+  delete single row from the table: "disease"
+  """
+  delete_disease_by_pk(id: Int!): disease
 
   """
   delete data from the table: "names"
@@ -678,12 +702,35 @@ type mutation_root {
   ): names_mutation_response
 
   """
+  delete single row from the table: "names"
+  """
+  delete_names_by_pk(id: Int!): names
+
+  """
   delete data from the table: "operations"
   """
   delete_operations(
     """filter the rows which have to be deleted"""
     where: operations_bool_exp!
   ): operations_mutation_response
+
+  """
+  delete single row from the table: "operations"
+  """
+  delete_operations_by_pk(id: Int!): operations
+
+  """
+  delete data from the table: "procedures"
+  """
+  delete_procedures(
+    """filter the rows which have to be deleted"""
+    where: procedures_bool_exp!
+  ): procedures_mutation_response
+
+  """
+  delete single row from the table: "procedures"
+  """
+  delete_procedures_by_pk(id: Int!): procedures
 
   """
   insert data into the table: "cases"
@@ -697,6 +744,17 @@ type mutation_root {
   ): cases_mutation_response
 
   """
+  insert a single row into the table: "cases"
+  """
+  insert_cases_one(
+    """the row to be inserted"""
+    object: cases_insert_input!
+
+    """on conflict condition"""
+    on_conflict: cases_on_conflict
+  ): cases
+
+  """
   insert data into the table: "disease"
   """
   insert_disease(
@@ -706,6 +764,17 @@ type mutation_root {
     """on conflict condition"""
     on_conflict: disease_on_conflict
   ): disease_mutation_response
+
+  """
+  insert a single row into the table: "disease"
+  """
+  insert_disease_one(
+    """the row to be inserted"""
+    object: disease_insert_input!
+
+    """on conflict condition"""
+    on_conflict: disease_on_conflict
+  ): disease
 
   """
   insert data into the table: "names"
@@ -719,6 +788,17 @@ type mutation_root {
   ): names_mutation_response
 
   """
+  insert a single row into the table: "names"
+  """
+  insert_names_one(
+    """the row to be inserted"""
+    object: names_insert_input!
+
+    """on conflict condition"""
+    on_conflict: names_on_conflict
+  ): names
+
+  """
   insert data into the table: "operations"
   """
   insert_operations(
@@ -728,6 +808,39 @@ type mutation_root {
     """on conflict condition"""
     on_conflict: operations_on_conflict
   ): operations_mutation_response
+
+  """
+  insert a single row into the table: "operations"
+  """
+  insert_operations_one(
+    """the row to be inserted"""
+    object: operations_insert_input!
+
+    """on conflict condition"""
+    on_conflict: operations_on_conflict
+  ): operations
+
+  """
+  insert data into the table: "procedures"
+  """
+  insert_procedures(
+    """the rows to be inserted"""
+    objects: [procedures_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: procedures_on_conflict
+  ): procedures_mutation_response
+
+  """
+  insert a single row into the table: "procedures"
+  """
+  insert_procedures_one(
+    """the row to be inserted"""
+    object: procedures_insert_input!
+
+    """on conflict condition"""
+    on_conflict: procedures_on_conflict
+  ): procedures
 
   """
   update data of the table: "cases"
@@ -744,6 +857,18 @@ type mutation_root {
   ): cases_mutation_response
 
   """
+  update single row of the table: "cases"
+  """
+  update_cases_by_pk(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: cases_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: cases_set_input
+    pk_columns: cases_pk_columns_input!
+  ): cases
+
+  """
   update data of the table: "disease"
   """
   update_disease(
@@ -756,6 +881,18 @@ type mutation_root {
     """filter the rows which have to be updated"""
     where: disease_bool_exp!
   ): disease_mutation_response
+
+  """
+  update single row of the table: "disease"
+  """
+  update_disease_by_pk(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: disease_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: disease_set_input
+    pk_columns: disease_pk_columns_input!
+  ): disease
 
   """
   update data of the table: "names"
@@ -772,6 +909,18 @@ type mutation_root {
   ): names_mutation_response
 
   """
+  update single row of the table: "names"
+  """
+  update_names_by_pk(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: names_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: names_set_input
+    pk_columns: names_pk_columns_input!
+  ): names
+
+  """
   update data of the table: "operations"
   """
   update_operations(
@@ -784,6 +933,44 @@ type mutation_root {
     """filter the rows which have to be updated"""
     where: operations_bool_exp!
   ): operations_mutation_response
+
+  """
+  update single row of the table: "operations"
+  """
+  update_operations_by_pk(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: operations_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: operations_set_input
+    pk_columns: operations_pk_columns_input!
+  ): operations
+
+  """
+  update data of the table: "procedures"
+  """
+  update_procedures(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: procedures_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: procedures_set_input
+
+    """filter the rows which have to be updated"""
+    where: procedures_bool_exp!
+  ): procedures_mutation_response
+
+  """
+  update single row of the table: "procedures"
+  """
+  update_procedures_by_pk(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: procedures_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: procedures_set_input
+    pk_columns: procedures_pk_columns_input!
+  ): procedures
 }
 
 """
@@ -926,7 +1113,7 @@ enum names_constraint {
 }
 
 """
-input type for incrementing integer columne in table "names"
+input type for incrementing integer column in table "names"
 """
 input names_inc_input {
   disease_id: Int
@@ -1026,6 +1213,13 @@ input names_order_by {
   id: order_by
   name: order_by
   number: order_by
+}
+
+"""
+primary key columns input for table: "names"
+"""
+input names_pk_columns_input {
+  id: Int!
 }
 
 """
@@ -1281,7 +1475,7 @@ enum operations_constraint {
 }
 
 """
-input type for incrementing integer columne in table "operations"
+input type for incrementing integer column in table "operations"
 """
 input operations_inc_input {
   id: Int
@@ -1357,6 +1551,13 @@ ordering options when selecting data from "operations"
 input operations_order_by {
   description: order_by
   id: order_by
+}
+
+"""
+primary key columns input for table: "operations"
+"""
+input operations_pk_columns_input {
+  id: Int!
 }
 
 """
@@ -1492,6 +1693,310 @@ enum order_by {
 
   """in the descending order, nulls last"""
   desc_nulls_last
+}
+
+"""
+columns and relationships of "procedures"
+"""
+type procedures {
+  group: String
+  id: Int!
+  text: String!
+}
+
+"""
+aggregated selection of "procedures"
+"""
+type procedures_aggregate {
+  aggregate: procedures_aggregate_fields
+  nodes: [procedures!]!
+}
+
+"""
+aggregate fields of "procedures"
+"""
+type procedures_aggregate_fields {
+  avg: procedures_avg_fields
+  count(columns: [procedures_select_column!], distinct: Boolean): Int
+  max: procedures_max_fields
+  min: procedures_min_fields
+  stddev: procedures_stddev_fields
+  stddev_pop: procedures_stddev_pop_fields
+  stddev_samp: procedures_stddev_samp_fields
+  sum: procedures_sum_fields
+  var_pop: procedures_var_pop_fields
+  var_samp: procedures_var_samp_fields
+  variance: procedures_variance_fields
+}
+
+"""
+order by aggregate values of table "procedures"
+"""
+input procedures_aggregate_order_by {
+  avg: procedures_avg_order_by
+  count: order_by
+  max: procedures_max_order_by
+  min: procedures_min_order_by
+  stddev: procedures_stddev_order_by
+  stddev_pop: procedures_stddev_pop_order_by
+  stddev_samp: procedures_stddev_samp_order_by
+  sum: procedures_sum_order_by
+  var_pop: procedures_var_pop_order_by
+  var_samp: procedures_var_samp_order_by
+  variance: procedures_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "procedures"
+"""
+input procedures_arr_rel_insert_input {
+  data: [procedures_insert_input!]!
+  on_conflict: procedures_on_conflict
+}
+
+"""aggregate avg on columns"""
+type procedures_avg_fields {
+  id: Float
+}
+
+"""
+order by avg() on columns of table "procedures"
+"""
+input procedures_avg_order_by {
+  id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "procedures". All fields are combined with a logical 'AND'.
+"""
+input procedures_bool_exp {
+  _and: [procedures_bool_exp]
+  _not: procedures_bool_exp
+  _or: [procedures_bool_exp]
+  group: String_comparison_exp
+  id: Int_comparison_exp
+  text: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "procedures"
+"""
+enum procedures_constraint {
+  """unique or primary key constraint"""
+  procedures_pkey
+}
+
+"""
+input type for incrementing integer column in table "procedures"
+"""
+input procedures_inc_input {
+  id: Int
+}
+
+"""
+input type for inserting data into table "procedures"
+"""
+input procedures_insert_input {
+  group: String
+  id: Int
+  text: String
+}
+
+"""aggregate max on columns"""
+type procedures_max_fields {
+  group: String
+  id: Int
+  text: String
+}
+
+"""
+order by max() on columns of table "procedures"
+"""
+input procedures_max_order_by {
+  group: order_by
+  id: order_by
+  text: order_by
+}
+
+"""aggregate min on columns"""
+type procedures_min_fields {
+  group: String
+  id: Int
+  text: String
+}
+
+"""
+order by min() on columns of table "procedures"
+"""
+input procedures_min_order_by {
+  group: order_by
+  id: order_by
+  text: order_by
+}
+
+"""
+response of any mutation on the table "procedures"
+"""
+type procedures_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [procedures!]!
+}
+
+"""
+input type for inserting object relation for remote table "procedures"
+"""
+input procedures_obj_rel_insert_input {
+  data: procedures_insert_input!
+  on_conflict: procedures_on_conflict
+}
+
+"""
+on conflict condition type for table "procedures"
+"""
+input procedures_on_conflict {
+  constraint: procedures_constraint!
+  update_columns: [procedures_update_column!]!
+  where: procedures_bool_exp
+}
+
+"""
+ordering options when selecting data from "procedures"
+"""
+input procedures_order_by {
+  group: order_by
+  id: order_by
+  text: order_by
+}
+
+"""
+primary key columns input for table: "procedures"
+"""
+input procedures_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "procedures"
+"""
+enum procedures_select_column {
+  """column name"""
+  group
+
+  """column name"""
+  id
+
+  """column name"""
+  text
+}
+
+"""
+input type for updating data in table "procedures"
+"""
+input procedures_set_input {
+  group: String
+  id: Int
+  text: String
+}
+
+"""aggregate stddev on columns"""
+type procedures_stddev_fields {
+  id: Float
+}
+
+"""
+order by stddev() on columns of table "procedures"
+"""
+input procedures_stddev_order_by {
+  id: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type procedures_stddev_pop_fields {
+  id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "procedures"
+"""
+input procedures_stddev_pop_order_by {
+  id: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type procedures_stddev_samp_fields {
+  id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "procedures"
+"""
+input procedures_stddev_samp_order_by {
+  id: order_by
+}
+
+"""aggregate sum on columns"""
+type procedures_sum_fields {
+  id: Int
+}
+
+"""
+order by sum() on columns of table "procedures"
+"""
+input procedures_sum_order_by {
+  id: order_by
+}
+
+"""
+update columns of table "procedures"
+"""
+enum procedures_update_column {
+  """column name"""
+  group
+
+  """column name"""
+  id
+
+  """column name"""
+  text
+}
+
+"""aggregate var_pop on columns"""
+type procedures_var_pop_fields {
+  id: Float
+}
+
+"""
+order by var_pop() on columns of table "procedures"
+"""
+input procedures_var_pop_order_by {
+  id: order_by
+}
+
+"""aggregate var_samp on columns"""
+type procedures_var_samp_fields {
+  id: Float
+}
+
+"""
+order by var_samp() on columns of table "procedures"
+"""
+input procedures_var_samp_order_by {
+  id: order_by
+}
+
+"""aggregate variance on columns"""
+type procedures_variance_fields {
+  id: Float
+}
+
+"""
+order by variance() on columns of table "procedures"
+"""
+input procedures_variance_order_by {
+  id: order_by
 }
 
 """query root"""
@@ -1667,6 +2172,49 @@ type query_root {
 
   """fetch data from the table: "operations" using primary key columns"""
   operations_by_pk(id: Int!): operations
+
+  """
+  fetch data from the table: "procedures"
+  """
+  procedures(
+    """distinct select on columns"""
+    distinct_on: [procedures_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [procedures_order_by!]
+
+    """filter the rows returned"""
+    where: procedures_bool_exp
+  ): [procedures!]!
+
+  """
+  fetch aggregated fields from the table: "procedures"
+  """
+  procedures_aggregate(
+    """distinct select on columns"""
+    distinct_on: [procedures_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [procedures_order_by!]
+
+    """filter the rows returned"""
+    where: procedures_bool_exp
+  ): procedures_aggregate!
+
+  """fetch data from the table: "procedures" using primary key columns"""
+  procedures_by_pk(id: Int!): procedures
 }
 
 """
@@ -1863,4 +2411,47 @@ type subscription_root {
 
   """fetch data from the table: "operations" using primary key columns"""
   operations_by_pk(id: Int!): operations
+
+  """
+  fetch data from the table: "procedures"
+  """
+  procedures(
+    """distinct select on columns"""
+    distinct_on: [procedures_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [procedures_order_by!]
+
+    """filter the rows returned"""
+    where: procedures_bool_exp
+  ): [procedures!]!
+
+  """
+  fetch aggregated fields from the table: "procedures"
+  """
+  procedures_aggregate(
+    """distinct select on columns"""
+    distinct_on: [procedures_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [procedures_order_by!]
+
+    """filter the rows returned"""
+    where: procedures_bool_exp
+  ): procedures_aggregate!
+
+  """fetch data from the table: "procedures" using primary key columns"""
+  procedures_by_pk(id: Int!): procedures
 }
