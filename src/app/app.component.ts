@@ -5,11 +5,12 @@ import {
   AddNameGQL,
   DelNameGQL,
   NameAndDiseaseGQL,
+  NameAndDiseaseQuery,
   NameAndDiseaseSubscriptionGQL,
   DiseasesGQL,
-  Disease,
-  Names,
-  Procedures,
+  DiseasesQuery,
+  NamesQuery,
+  ProceduresQuery,
   ProceduresGQL,
 } from '../generated/types.graphql-gen';
 
@@ -23,10 +24,10 @@ import { option } from 'filtered-select';
 export class AppComponent implements OnInit {
   selectedOption: option;
 
-  names$: Observable<Partial<Names>[]>;
-  namesSub$: Observable<Partial<Names>[]>;
-  diseases$: Observable<Partial<Disease>[]>;
-  procedures$: Observable<Partial<Procedures>[]>;
+  names$: Observable<NamesQuery['names']>;
+  namesSub$: Observable<NameAndDiseaseQuery['names']>;
+  diseases$: Observable<DiseasesQuery['disease']>;
+  procedures$: Observable<ProceduresQuery['procedures']>;
 
   title = 'graphql-angular-learning';
 

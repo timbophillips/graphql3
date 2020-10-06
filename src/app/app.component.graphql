@@ -12,6 +12,7 @@ query NameAndDisease {
     name
     id
     color
+    number
     disease {
       description
     }
