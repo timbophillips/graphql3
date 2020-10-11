@@ -1,70 +1,6 @@
 <div style="padding: 20px;">
   <h3>apollo-hasura-learning</h3>
 
-  <form>
-    <label>Extra</label>
-
-    <label>name</label>
-    <input type="text" required #newName />
-    <label>color</label> <input list="colors" required type="text" #newColor />
-
-    <datalist id="colors">
-      <option *ngFor="let option of colOptions">{{ option }}</option>
-      <option value="Black"> </option>
-      <option value="White"> </option>
-      <option value="Red"> </option>
-      <option value="Orange"> </option>
-      <option value="Purple"> </option>
-    </datalist>
-
-    <filtered-select
-    [options]="options"
-    [lines]="8"
-    [backgroundColor]="'white'"
-    (chosenOption)="onResult($event)"
-    [grouped]=true
-  >
-  </filtered-select>
-
-  <filtered-select
-  [options]="procedures$ | async"
-  [lines]="8"
-  [backgroundColor]="'white'"
-  (chosenOption)="onResult($event)"
-  [grouped]=true
->
-</filtered-select>
-
-<!-- <code>{{procedures$ | async | json }}</code>
-<br/><br/>
-<code>{{fake | async | json }}</code> -->
-
-
-    <label>number</label>
-    <input type="text" #newNumber type="number" required />
-    <label>disease</label>
-    <select #newDisease required size="10">
-      <option value=""> - </option>
-      <option *ngFor="let item of diseases$ | async" [value]="item.id">
-        {{ item.description }}
-      </option>
-    </select>
-    <label> </label>
-    <button
-      (click)="
-        addName(
-          newName.value,
-          newColor.value,
-          newNumber.value,
-          newDisease.value
-        )
-      "
-    >
-      Add new person to database
-    </button>
-  </form>
-</div>
-
 <div style="padding: 20px;">
   <table style="width: 100%;">
     <thead>
@@ -82,7 +18,6 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of cases$ | async">
-        <td>{{ item.id }}</td>
         <td>
           {{ item.id }}
         </td>
@@ -115,65 +50,4 @@
   </table>
 </div>
 
-<div style="padding: 20px;">
-  <table style="width: 100%;">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Color</th>
-        <th>Number</th>
-        <th>Disease</th>
-        <th>action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of namesSub$ | async">
-        <td>{{ item.id }}</td>
-        <td>
-          {{ item.name }}
-        </td>
-        <td>
-          {{ item.color }}
-        </td>
-        <td>
-          {{ item.number }}
-        </td>
-        <td>
-          {{ item.disease ? item.disease.description : "" }}
-        </td>
-        <td>
-          <button (click)="delName(item.id)">delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div style="padding: 20px;">
-  <table style="width: 100%;">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Text</th>
-        <th>Group</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of procedures$ | async">
-        <td>
-          {{ item.id }}
-        </td>
-        <td>
-          {{ item.text }}
-        </td>
-        <td>
-          {{ item.group }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div>
 </div>
