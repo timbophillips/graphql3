@@ -1,5 +1,5 @@
 # source: http://localhost:8080/v1/graphql
-# timestamp: Sun Oct 11 2020 16:04:52 GMT+0800 (Australian Western Standard Time)
+# timestamp: Sun Oct 11 2020 19:58:16 GMT+0800 (Australian Western Standard Time)
 
 schema {
   query: query_root
@@ -8,14 +8,615 @@ schema {
 }
 
 """
+columns and relationships of "access"
+"""
+type access {
+  id: Int!
+  vessel: String!
+}
+
+"""
+aggregated selection of "access"
+"""
+type access_aggregate {
+  aggregate: access_aggregate_fields
+  nodes: [access!]!
+}
+
+"""
+aggregate fields of "access"
+"""
+type access_aggregate_fields {
+  avg: access_avg_fields
+  count(columns: [access_select_column!], distinct: Boolean): Int
+  max: access_max_fields
+  min: access_min_fields
+  stddev: access_stddev_fields
+  stddev_pop: access_stddev_pop_fields
+  stddev_samp: access_stddev_samp_fields
+  sum: access_sum_fields
+  var_pop: access_var_pop_fields
+  var_samp: access_var_samp_fields
+  variance: access_variance_fields
+}
+
+"""
+order by aggregate values of table "access"
+"""
+input access_aggregate_order_by {
+  avg: access_avg_order_by
+  count: order_by
+  max: access_max_order_by
+  min: access_min_order_by
+  stddev: access_stddev_order_by
+  stddev_pop: access_stddev_pop_order_by
+  stddev_samp: access_stddev_samp_order_by
+  sum: access_sum_order_by
+  var_pop: access_var_pop_order_by
+  var_samp: access_var_samp_order_by
+  variance: access_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "access"
+"""
+input access_arr_rel_insert_input {
+  data: [access_insert_input!]!
+  on_conflict: access_on_conflict
+}
+
+"""aggregate avg on columns"""
+type access_avg_fields {
+  id: Float
+}
+
+"""
+order by avg() on columns of table "access"
+"""
+input access_avg_order_by {
+  id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "access". All fields are combined with a logical 'AND'.
+"""
+input access_bool_exp {
+  _and: [access_bool_exp]
+  _not: access_bool_exp
+  _or: [access_bool_exp]
+  id: Int_comparison_exp
+  vessel: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "access"
+"""
+enum access_constraint {
+  """unique or primary key constraint"""
+  access_pkey
+
+  """unique or primary key constraint"""
+  access_vessel_key
+}
+
+"""
+input type for incrementing integer columne in table "access"
+"""
+input access_inc_input {
+  id: Int
+}
+
+"""
+input type for inserting data into table "access"
+"""
+input access_insert_input {
+  id: Int
+  vessel: String
+}
+
+"""aggregate max on columns"""
+type access_max_fields {
+  id: Int
+  vessel: String
+}
+
+"""
+order by max() on columns of table "access"
+"""
+input access_max_order_by {
+  id: order_by
+  vessel: order_by
+}
+
+"""aggregate min on columns"""
+type access_min_fields {
+  id: Int
+  vessel: String
+}
+
+"""
+order by min() on columns of table "access"
+"""
+input access_min_order_by {
+  id: order_by
+  vessel: order_by
+}
+
+"""
+response of any mutation on the table "access"
+"""
+type access_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [access!]!
+}
+
+"""
+input type for inserting object relation for remote table "access"
+"""
+input access_obj_rel_insert_input {
+  data: access_insert_input!
+  on_conflict: access_on_conflict
+}
+
+"""
+on conflict condition type for table "access"
+"""
+input access_on_conflict {
+  constraint: access_constraint!
+  update_columns: [access_update_column!]!
+  where: access_bool_exp
+}
+
+"""
+ordering options when selecting data from "access"
+"""
+input access_order_by {
+  id: order_by
+  vessel: order_by
+}
+
+"""
+select columns of table "access"
+"""
+enum access_select_column {
+  """column name"""
+  id
+
+  """column name"""
+  vessel
+}
+
+"""
+input type for updating data in table "access"
+"""
+input access_set_input {
+  id: Int
+  vessel: String
+}
+
+"""aggregate stddev on columns"""
+type access_stddev_fields {
+  id: Float
+}
+
+"""
+order by stddev() on columns of table "access"
+"""
+input access_stddev_order_by {
+  id: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type access_stddev_pop_fields {
+  id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "access"
+"""
+input access_stddev_pop_order_by {
+  id: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type access_stddev_samp_fields {
+  id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "access"
+"""
+input access_stddev_samp_order_by {
+  id: order_by
+}
+
+"""aggregate sum on columns"""
+type access_sum_fields {
+  id: Int
+}
+
+"""
+order by sum() on columns of table "access"
+"""
+input access_sum_order_by {
+  id: order_by
+}
+
+"""
+update columns of table "access"
+"""
+enum access_update_column {
+  """column name"""
+  id
+
+  """column name"""
+  vessel
+}
+
+"""aggregate var_pop on columns"""
+type access_var_pop_fields {
+  id: Float
+}
+
+"""
+order by var_pop() on columns of table "access"
+"""
+input access_var_pop_order_by {
+  id: order_by
+}
+
+"""aggregate var_samp on columns"""
+type access_var_samp_fields {
+  id: Float
+}
+
+"""
+order by var_samp() on columns of table "access"
+"""
+input access_var_samp_order_by {
+  id: order_by
+}
+
+"""aggregate variance on columns"""
+type access_variance_fields {
+  id: Float
+}
+
+"""
+order by variance() on columns of table "access"
+"""
+input access_variance_order_by {
+  id: order_by
+}
+
+"""
+columns and relationships of "aneurysm"
+"""
+type aneurysm {
+  group: String!
+  id: Int!
+  site: String!
+}
+
+"""
+aggregated selection of "aneurysm"
+"""
+type aneurysm_aggregate {
+  aggregate: aneurysm_aggregate_fields
+  nodes: [aneurysm!]!
+}
+
+"""
+aggregate fields of "aneurysm"
+"""
+type aneurysm_aggregate_fields {
+  avg: aneurysm_avg_fields
+  count(columns: [aneurysm_select_column!], distinct: Boolean): Int
+  max: aneurysm_max_fields
+  min: aneurysm_min_fields
+  stddev: aneurysm_stddev_fields
+  stddev_pop: aneurysm_stddev_pop_fields
+  stddev_samp: aneurysm_stddev_samp_fields
+  sum: aneurysm_sum_fields
+  var_pop: aneurysm_var_pop_fields
+  var_samp: aneurysm_var_samp_fields
+  variance: aneurysm_variance_fields
+}
+
+"""
+order by aggregate values of table "aneurysm"
+"""
+input aneurysm_aggregate_order_by {
+  avg: aneurysm_avg_order_by
+  count: order_by
+  max: aneurysm_max_order_by
+  min: aneurysm_min_order_by
+  stddev: aneurysm_stddev_order_by
+  stddev_pop: aneurysm_stddev_pop_order_by
+  stddev_samp: aneurysm_stddev_samp_order_by
+  sum: aneurysm_sum_order_by
+  var_pop: aneurysm_var_pop_order_by
+  var_samp: aneurysm_var_samp_order_by
+  variance: aneurysm_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "aneurysm"
+"""
+input aneurysm_arr_rel_insert_input {
+  data: [aneurysm_insert_input!]!
+  on_conflict: aneurysm_on_conflict
+}
+
+"""aggregate avg on columns"""
+type aneurysm_avg_fields {
+  id: Float
+}
+
+"""
+order by avg() on columns of table "aneurysm"
+"""
+input aneurysm_avg_order_by {
+  id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "aneurysm". All fields are combined with a logical 'AND'.
+"""
+input aneurysm_bool_exp {
+  _and: [aneurysm_bool_exp]
+  _not: aneurysm_bool_exp
+  _or: [aneurysm_bool_exp]
+  group: String_comparison_exp
+  id: Int_comparison_exp
+  site: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "aneurysm"
+"""
+enum aneurysm_constraint {
+  """unique or primary key constraint"""
+  aneurysm_pkey
+
+  """unique or primary key constraint"""
+  aneurysm_site_key
+}
+
+"""
+input type for incrementing integer columne in table "aneurysm"
+"""
+input aneurysm_inc_input {
+  id: Int
+}
+
+"""
+input type for inserting data into table "aneurysm"
+"""
+input aneurysm_insert_input {
+  group: String
+  id: Int
+  site: String
+}
+
+"""aggregate max on columns"""
+type aneurysm_max_fields {
+  group: String
+  id: Int
+  site: String
+}
+
+"""
+order by max() on columns of table "aneurysm"
+"""
+input aneurysm_max_order_by {
+  group: order_by
+  id: order_by
+  site: order_by
+}
+
+"""aggregate min on columns"""
+type aneurysm_min_fields {
+  group: String
+  id: Int
+  site: String
+}
+
+"""
+order by min() on columns of table "aneurysm"
+"""
+input aneurysm_min_order_by {
+  group: order_by
+  id: order_by
+  site: order_by
+}
+
+"""
+response of any mutation on the table "aneurysm"
+"""
+type aneurysm_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [aneurysm!]!
+}
+
+"""
+input type for inserting object relation for remote table "aneurysm"
+"""
+input aneurysm_obj_rel_insert_input {
+  data: aneurysm_insert_input!
+  on_conflict: aneurysm_on_conflict
+}
+
+"""
+on conflict condition type for table "aneurysm"
+"""
+input aneurysm_on_conflict {
+  constraint: aneurysm_constraint!
+  update_columns: [aneurysm_update_column!]!
+  where: aneurysm_bool_exp
+}
+
+"""
+ordering options when selecting data from "aneurysm"
+"""
+input aneurysm_order_by {
+  group: order_by
+  id: order_by
+  site: order_by
+}
+
+"""
+select columns of table "aneurysm"
+"""
+enum aneurysm_select_column {
+  """column name"""
+  group
+
+  """column name"""
+  id
+
+  """column name"""
+  site
+}
+
+"""
+input type for updating data in table "aneurysm"
+"""
+input aneurysm_set_input {
+  group: String
+  id: Int
+  site: String
+}
+
+"""aggregate stddev on columns"""
+type aneurysm_stddev_fields {
+  id: Float
+}
+
+"""
+order by stddev() on columns of table "aneurysm"
+"""
+input aneurysm_stddev_order_by {
+  id: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type aneurysm_stddev_pop_fields {
+  id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "aneurysm"
+"""
+input aneurysm_stddev_pop_order_by {
+  id: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type aneurysm_stddev_samp_fields {
+  id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "aneurysm"
+"""
+input aneurysm_stddev_samp_order_by {
+  id: order_by
+}
+
+"""aggregate sum on columns"""
+type aneurysm_sum_fields {
+  id: Int
+}
+
+"""
+order by sum() on columns of table "aneurysm"
+"""
+input aneurysm_sum_order_by {
+  id: order_by
+}
+
+"""
+update columns of table "aneurysm"
+"""
+enum aneurysm_update_column {
+  """column name"""
+  group
+
+  """column name"""
+  id
+
+  """column name"""
+  site
+}
+
+"""aggregate var_pop on columns"""
+type aneurysm_var_pop_fields {
+  id: Float
+}
+
+"""
+order by var_pop() on columns of table "aneurysm"
+"""
+input aneurysm_var_pop_order_by {
+  id: order_by
+}
+
+"""aggregate var_samp on columns"""
+type aneurysm_var_samp_fields {
+  id: Float
+}
+
+"""
+order by var_samp() on columns of table "aneurysm"
+"""
+input aneurysm_var_samp_order_by {
+  id: order_by
+}
+
+"""aggregate variance on columns"""
+type aneurysm_variance_fields {
+  id: Float
+}
+
+"""
+order by variance() on columns of table "aneurysm"
+"""
+input aneurysm_variance_order_by {
+  id: order_by
+}
+
+"""
 columns and relationships of "cases"
 """
 type cases {
+  """An object relationship"""
+  access: access
+  access_id: Int
+
+  """An object relationship"""
+  aneurysm: aneurysm
+  aneurysm_id: Int
+  date: timestamp!
+
+  """An object relationship"""
+  doctor: doctors!
+  doctor_id: Int!
   id: Int!
 
   """An object relationship"""
-  name: names!
+  patient: patients!
   patient_id: Int!
+
+  """An object relationship"""
+  procedure: procedures
+  procedure_id: Int
 }
 
 """
@@ -70,16 +671,24 @@ input cases_arr_rel_insert_input {
 
 """aggregate avg on columns"""
 type cases_avg_fields {
+  access_id: Float
+  aneurysm_id: Float
+  doctor_id: Float
   id: Float
   patient_id: Float
+  procedure_id: Float
 }
 
 """
 order by avg() on columns of table "cases"
 """
 input cases_avg_order_by {
+  access_id: order_by
+  aneurysm_id: order_by
+  doctor_id: order_by
   id: order_by
   patient_id: order_by
+  procedure_id: order_by
 }
 
 """
@@ -89,15 +698,27 @@ input cases_bool_exp {
   _and: [cases_bool_exp]
   _not: cases_bool_exp
   _or: [cases_bool_exp]
+  access: access_bool_exp
+  access_id: Int_comparison_exp
+  aneurysm: aneurysm_bool_exp
+  aneurysm_id: Int_comparison_exp
+  date: timestamp_comparison_exp
+  doctor: doctors_bool_exp
+  doctor_id: Int_comparison_exp
   id: Int_comparison_exp
-  name: names_bool_exp
+  patient: patients_bool_exp
   patient_id: Int_comparison_exp
+  procedure: procedures_bool_exp
+  procedure_id: Int_comparison_exp
 }
 
 """
 unique or primary key constraints on table "cases"
 """
 enum cases_constraint {
+  """unique or primary key constraint"""
+  cases_id_key1
+
   """unique or primary key constraint"""
   cases_pkey
 }
@@ -106,45 +727,74 @@ enum cases_constraint {
 input type for incrementing integer columne in table "cases"
 """
 input cases_inc_input {
+  access_id: Int
+  aneurysm_id: Int
+  doctor_id: Int
   id: Int
   patient_id: Int
+  procedure_id: Int
 }
 
 """
 input type for inserting data into table "cases"
 """
 input cases_insert_input {
+  access: access_obj_rel_insert_input
+  access_id: Int
+  aneurysm: aneurysm_obj_rel_insert_input
+  aneurysm_id: Int
+  date: timestamp
+  doctor: doctors_obj_rel_insert_input
+  doctor_id: Int
   id: Int
-  name: names_obj_rel_insert_input
+  patient: patients_obj_rel_insert_input
   patient_id: Int
+  procedure: procedures_obj_rel_insert_input
+  procedure_id: Int
 }
 
 """aggregate max on columns"""
 type cases_max_fields {
+  access_id: Int
+  aneurysm_id: Int
+  doctor_id: Int
   id: Int
   patient_id: Int
+  procedure_id: Int
 }
 
 """
 order by max() on columns of table "cases"
 """
 input cases_max_order_by {
+  access_id: order_by
+  aneurysm_id: order_by
+  doctor_id: order_by
   id: order_by
   patient_id: order_by
+  procedure_id: order_by
 }
 
 """aggregate min on columns"""
 type cases_min_fields {
+  access_id: Int
+  aneurysm_id: Int
+  doctor_id: Int
   id: Int
   patient_id: Int
+  procedure_id: Int
 }
 
 """
 order by min() on columns of table "cases"
 """
 input cases_min_order_by {
+  access_id: order_by
+  aneurysm_id: order_by
+  doctor_id: order_by
   id: order_by
   patient_id: order_by
+  procedure_id: order_by
 }
 
 """
@@ -179,9 +829,18 @@ input cases_on_conflict {
 ordering options when selecting data from "cases"
 """
 input cases_order_by {
+  access: access_order_by
+  access_id: order_by
+  aneurysm: aneurysm_order_by
+  aneurysm_id: order_by
+  date: order_by
+  doctor: doctors_order_by
+  doctor_id: order_by
   id: order_by
-  name: names_order_by
+  patient: patients_order_by
   patient_id: order_by
+  procedure: procedures_order_by
+  procedure_id: order_by
 }
 
 """
@@ -189,74 +848,126 @@ select columns of table "cases"
 """
 enum cases_select_column {
   """column name"""
+  access_id
+
+  """column name"""
+  aneurysm_id
+
+  """column name"""
+  date
+
+  """column name"""
+  doctor_id
+
+  """column name"""
   id
 
   """column name"""
   patient_id
+
+  """column name"""
+  procedure_id
 }
 
 """
 input type for updating data in table "cases"
 """
 input cases_set_input {
+  access_id: Int
+  aneurysm_id: Int
+  date: timestamp
+  doctor_id: Int
   id: Int
   patient_id: Int
+  procedure_id: Int
 }
 
 """aggregate stddev on columns"""
 type cases_stddev_fields {
+  access_id: Float
+  aneurysm_id: Float
+  doctor_id: Float
   id: Float
   patient_id: Float
+  procedure_id: Float
 }
 
 """
 order by stddev() on columns of table "cases"
 """
 input cases_stddev_order_by {
+  access_id: order_by
+  aneurysm_id: order_by
+  doctor_id: order_by
   id: order_by
   patient_id: order_by
+  procedure_id: order_by
 }
 
 """aggregate stddev_pop on columns"""
 type cases_stddev_pop_fields {
+  access_id: Float
+  aneurysm_id: Float
+  doctor_id: Float
   id: Float
   patient_id: Float
+  procedure_id: Float
 }
 
 """
 order by stddev_pop() on columns of table "cases"
 """
 input cases_stddev_pop_order_by {
+  access_id: order_by
+  aneurysm_id: order_by
+  doctor_id: order_by
   id: order_by
   patient_id: order_by
+  procedure_id: order_by
 }
 
 """aggregate stddev_samp on columns"""
 type cases_stddev_samp_fields {
+  access_id: Float
+  aneurysm_id: Float
+  doctor_id: Float
   id: Float
   patient_id: Float
+  procedure_id: Float
 }
 
 """
 order by stddev_samp() on columns of table "cases"
 """
 input cases_stddev_samp_order_by {
+  access_id: order_by
+  aneurysm_id: order_by
+  doctor_id: order_by
   id: order_by
   patient_id: order_by
+  procedure_id: order_by
 }
 
 """aggregate sum on columns"""
 type cases_sum_fields {
+  access_id: Int
+  aneurysm_id: Int
+  doctor_id: Int
   id: Int
   patient_id: Int
+  procedure_id: Int
 }
 
 """
 order by sum() on columns of table "cases"
 """
 input cases_sum_order_by {
+  access_id: order_by
+  aneurysm_id: order_by
+  doctor_id: order_by
   id: order_by
   patient_id: order_by
+  procedure_id: order_by
 }
 
 """
@@ -264,52 +975,91 @@ update columns of table "cases"
 """
 enum cases_update_column {
   """column name"""
+  access_id
+
+  """column name"""
+  aneurysm_id
+
+  """column name"""
+  date
+
+  """column name"""
+  doctor_id
+
+  """column name"""
   id
 
   """column name"""
   patient_id
+
+  """column name"""
+  procedure_id
 }
 
 """aggregate var_pop on columns"""
 type cases_var_pop_fields {
+  access_id: Float
+  aneurysm_id: Float
+  doctor_id: Float
   id: Float
   patient_id: Float
+  procedure_id: Float
 }
 
 """
 order by var_pop() on columns of table "cases"
 """
 input cases_var_pop_order_by {
+  access_id: order_by
+  aneurysm_id: order_by
+  doctor_id: order_by
   id: order_by
   patient_id: order_by
+  procedure_id: order_by
 }
 
 """aggregate var_samp on columns"""
 type cases_var_samp_fields {
+  access_id: Float
+  aneurysm_id: Float
+  doctor_id: Float
   id: Float
   patient_id: Float
+  procedure_id: Float
 }
 
 """
 order by var_samp() on columns of table "cases"
 """
 input cases_var_samp_order_by {
+  access_id: order_by
+  aneurysm_id: order_by
+  doctor_id: order_by
   id: order_by
   patient_id: order_by
+  procedure_id: order_by
 }
 
 """aggregate variance on columns"""
 type cases_variance_fields {
+  access_id: Float
+  aneurysm_id: Float
+  doctor_id: Float
   id: Float
   patient_id: Float
+  procedure_id: Float
 }
 
 """
 order by variance() on columns of table "cases"
 """
 input cases_variance_order_by {
+  access_id: order_by
+  aneurysm_id: order_by
+  doctor_id: order_by
   id: order_by
   patient_id: order_by
+  procedure_id: order_by
 }
 
 scalar date
@@ -654,6 +1404,291 @@ input disease_variance_order_by {
 }
 
 """
+columns and relationships of "doctors"
+"""
+type doctors {
+  id: Int!
+  name: String!
+}
+
+"""
+aggregated selection of "doctors"
+"""
+type doctors_aggregate {
+  aggregate: doctors_aggregate_fields
+  nodes: [doctors!]!
+}
+
+"""
+aggregate fields of "doctors"
+"""
+type doctors_aggregate_fields {
+  avg: doctors_avg_fields
+  count(columns: [doctors_select_column!], distinct: Boolean): Int
+  max: doctors_max_fields
+  min: doctors_min_fields
+  stddev: doctors_stddev_fields
+  stddev_pop: doctors_stddev_pop_fields
+  stddev_samp: doctors_stddev_samp_fields
+  sum: doctors_sum_fields
+  var_pop: doctors_var_pop_fields
+  var_samp: doctors_var_samp_fields
+  variance: doctors_variance_fields
+}
+
+"""
+order by aggregate values of table "doctors"
+"""
+input doctors_aggregate_order_by {
+  avg: doctors_avg_order_by
+  count: order_by
+  max: doctors_max_order_by
+  min: doctors_min_order_by
+  stddev: doctors_stddev_order_by
+  stddev_pop: doctors_stddev_pop_order_by
+  stddev_samp: doctors_stddev_samp_order_by
+  sum: doctors_sum_order_by
+  var_pop: doctors_var_pop_order_by
+  var_samp: doctors_var_samp_order_by
+  variance: doctors_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "doctors"
+"""
+input doctors_arr_rel_insert_input {
+  data: [doctors_insert_input!]!
+  on_conflict: doctors_on_conflict
+}
+
+"""aggregate avg on columns"""
+type doctors_avg_fields {
+  id: Float
+}
+
+"""
+order by avg() on columns of table "doctors"
+"""
+input doctors_avg_order_by {
+  id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "doctors". All fields are combined with a logical 'AND'.
+"""
+input doctors_bool_exp {
+  _and: [doctors_bool_exp]
+  _not: doctors_bool_exp
+  _or: [doctors_bool_exp]
+  id: Int_comparison_exp
+  name: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "doctors"
+"""
+enum doctors_constraint {
+  """unique or primary key constraint"""
+  doctors_name_key
+
+  """unique or primary key constraint"""
+  doctors_pkey
+}
+
+"""
+input type for incrementing integer columne in table "doctors"
+"""
+input doctors_inc_input {
+  id: Int
+}
+
+"""
+input type for inserting data into table "doctors"
+"""
+input doctors_insert_input {
+  id: Int
+  name: String
+}
+
+"""aggregate max on columns"""
+type doctors_max_fields {
+  id: Int
+  name: String
+}
+
+"""
+order by max() on columns of table "doctors"
+"""
+input doctors_max_order_by {
+  id: order_by
+  name: order_by
+}
+
+"""aggregate min on columns"""
+type doctors_min_fields {
+  id: Int
+  name: String
+}
+
+"""
+order by min() on columns of table "doctors"
+"""
+input doctors_min_order_by {
+  id: order_by
+  name: order_by
+}
+
+"""
+response of any mutation on the table "doctors"
+"""
+type doctors_mutation_response {
+  """number of affected rows by the mutation"""
+  affected_rows: Int!
+
+  """data of the affected rows by the mutation"""
+  returning: [doctors!]!
+}
+
+"""
+input type for inserting object relation for remote table "doctors"
+"""
+input doctors_obj_rel_insert_input {
+  data: doctors_insert_input!
+  on_conflict: doctors_on_conflict
+}
+
+"""
+on conflict condition type for table "doctors"
+"""
+input doctors_on_conflict {
+  constraint: doctors_constraint!
+  update_columns: [doctors_update_column!]!
+  where: doctors_bool_exp
+}
+
+"""
+ordering options when selecting data from "doctors"
+"""
+input doctors_order_by {
+  id: order_by
+  name: order_by
+}
+
+"""
+select columns of table "doctors"
+"""
+enum doctors_select_column {
+  """column name"""
+  id
+
+  """column name"""
+  name
+}
+
+"""
+input type for updating data in table "doctors"
+"""
+input doctors_set_input {
+  id: Int
+  name: String
+}
+
+"""aggregate stddev on columns"""
+type doctors_stddev_fields {
+  id: Float
+}
+
+"""
+order by stddev() on columns of table "doctors"
+"""
+input doctors_stddev_order_by {
+  id: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type doctors_stddev_pop_fields {
+  id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "doctors"
+"""
+input doctors_stddev_pop_order_by {
+  id: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type doctors_stddev_samp_fields {
+  id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "doctors"
+"""
+input doctors_stddev_samp_order_by {
+  id: order_by
+}
+
+"""aggregate sum on columns"""
+type doctors_sum_fields {
+  id: Int
+}
+
+"""
+order by sum() on columns of table "doctors"
+"""
+input doctors_sum_order_by {
+  id: order_by
+}
+
+"""
+update columns of table "doctors"
+"""
+enum doctors_update_column {
+  """column name"""
+  id
+
+  """column name"""
+  name
+}
+
+"""aggregate var_pop on columns"""
+type doctors_var_pop_fields {
+  id: Float
+}
+
+"""
+order by var_pop() on columns of table "doctors"
+"""
+input doctors_var_pop_order_by {
+  id: order_by
+}
+
+"""aggregate var_samp on columns"""
+type doctors_var_samp_fields {
+  id: Float
+}
+
+"""
+order by var_samp() on columns of table "doctors"
+"""
+input doctors_var_samp_order_by {
+  id: order_by
+}
+
+"""aggregate variance on columns"""
+type doctors_variance_fields {
+  id: Float
+}
+
+"""
+order by variance() on columns of table "doctors"
+"""
+input doctors_variance_order_by {
+  id: order_by
+}
+
+"""
 expression to compare columns of type Int. All fields are combined with logical 'AND'.
 """
 input Int_comparison_exp {
@@ -671,6 +1706,22 @@ input Int_comparison_exp {
 """mutation root"""
 type mutation_root {
   """
+  delete data from the table: "access"
+  """
+  delete_access(
+    """filter the rows which have to be deleted"""
+    where: access_bool_exp!
+  ): access_mutation_response
+
+  """
+  delete data from the table: "aneurysm"
+  """
+  delete_aneurysm(
+    """filter the rows which have to be deleted"""
+    where: aneurysm_bool_exp!
+  ): aneurysm_mutation_response
+
+  """
   delete data from the table: "cases"
   """
   delete_cases(
@@ -685,6 +1736,14 @@ type mutation_root {
     """filter the rows which have to be deleted"""
     where: disease_bool_exp!
   ): disease_mutation_response
+
+  """
+  delete data from the table: "doctors"
+  """
+  delete_doctors(
+    """filter the rows which have to be deleted"""
+    where: doctors_bool_exp!
+  ): doctors_mutation_response
 
   """
   delete data from the table: "names"
@@ -719,6 +1778,28 @@ type mutation_root {
   ): procedures_mutation_response
 
   """
+  insert data into the table: "access"
+  """
+  insert_access(
+    """the rows to be inserted"""
+    objects: [access_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: access_on_conflict
+  ): access_mutation_response
+
+  """
+  insert data into the table: "aneurysm"
+  """
+  insert_aneurysm(
+    """the rows to be inserted"""
+    objects: [aneurysm_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: aneurysm_on_conflict
+  ): aneurysm_mutation_response
+
+  """
   insert data into the table: "cases"
   """
   insert_cases(
@@ -739,6 +1820,17 @@ type mutation_root {
     """on conflict condition"""
     on_conflict: disease_on_conflict
   ): disease_mutation_response
+
+  """
+  insert data into the table: "doctors"
+  """
+  insert_doctors(
+    """the rows to be inserted"""
+    objects: [doctors_insert_input!]!
+
+    """on conflict condition"""
+    on_conflict: doctors_on_conflict
+  ): doctors_mutation_response
 
   """
   insert data into the table: "names"
@@ -785,6 +1877,34 @@ type mutation_root {
   ): procedures_mutation_response
 
   """
+  update data of the table: "access"
+  """
+  update_access(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: access_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: access_set_input
+
+    """filter the rows which have to be updated"""
+    where: access_bool_exp!
+  ): access_mutation_response
+
+  """
+  update data of the table: "aneurysm"
+  """
+  update_aneurysm(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: aneurysm_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: aneurysm_set_input
+
+    """filter the rows which have to be updated"""
+    where: aneurysm_bool_exp!
+  ): aneurysm_mutation_response
+
+  """
   update data of the table: "cases"
   """
   update_cases(
@@ -811,6 +1931,20 @@ type mutation_root {
     """filter the rows which have to be updated"""
     where: disease_bool_exp!
   ): disease_mutation_response
+
+  """
+  update data of the table: "doctors"
+  """
+  update_doctors(
+    """increments the integer columns with given value of the filtered values"""
+    _inc: doctors_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: doctors_set_input
+
+    """filter the rows which have to be updated"""
+    where: doctors_bool_exp!
+  ): doctors_mutation_response
 
   """
   update data of the table: "names"
@@ -873,41 +2007,6 @@ type mutation_root {
 columns and relationships of "names"
 """
 type names {
-  """An array relationship"""
-  cases(
-    """distinct select on columns"""
-    distinct_on: [cases_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [cases_order_by!]
-
-    """filter the rows returned"""
-    where: cases_bool_exp
-  ): [cases!]!
-
-  """An aggregated array relationship"""
-  cases_aggregate(
-    """distinct select on columns"""
-    distinct_on: [cases_select_column!]
-
-    """limit the number of rows returned"""
-    limit: Int
-
-    """skip the first n rows. Use only with order_by"""
-    offset: Int
-
-    """sort the rows by one or more columns"""
-    order_by: [cases_order_by!]
-
-    """filter the rows returned"""
-    where: cases_bool_exp
-  ): cases_aggregate!
   color: String
 
   """An object relationship"""
@@ -991,7 +2090,6 @@ input names_bool_exp {
   _and: [names_bool_exp]
   _not: names_bool_exp
   _or: [names_bool_exp]
-  cases: cases_bool_exp
   color: String_comparison_exp
   disease: disease_bool_exp
   disease_id: Int_comparison_exp
@@ -1021,7 +2119,6 @@ input names_inc_input {
 input type for inserting data into table "names"
 """
 input names_insert_input {
-  cases: cases_arr_rel_insert_input
   color: String
   disease: disease_obj_rel_insert_input
   disease_id: Int
@@ -1102,7 +2199,6 @@ input names_on_conflict {
 ordering options when selecting data from "names"
 """
 input names_order_by {
-  cases_aggregate: cases_aggregate_order_by
   color: order_by
   disease: disease_order_by
   disease_id: order_by
@@ -2207,6 +3303,92 @@ input procedures_variance_order_by {
 """query root"""
 type query_root {
   """
+  fetch data from the table: "access"
+  """
+  access(
+    """distinct select on columns"""
+    distinct_on: [access_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [access_order_by!]
+
+    """filter the rows returned"""
+    where: access_bool_exp
+  ): [access!]!
+
+  """
+  fetch aggregated fields from the table: "access"
+  """
+  access_aggregate(
+    """distinct select on columns"""
+    distinct_on: [access_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [access_order_by!]
+
+    """filter the rows returned"""
+    where: access_bool_exp
+  ): access_aggregate!
+
+  """fetch data from the table: "access" using primary key columns"""
+  access_by_pk(id: Int!): access
+
+  """
+  fetch data from the table: "aneurysm"
+  """
+  aneurysm(
+    """distinct select on columns"""
+    distinct_on: [aneurysm_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [aneurysm_order_by!]
+
+    """filter the rows returned"""
+    where: aneurysm_bool_exp
+  ): [aneurysm!]!
+
+  """
+  fetch aggregated fields from the table: "aneurysm"
+  """
+  aneurysm_aggregate(
+    """distinct select on columns"""
+    distinct_on: [aneurysm_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [aneurysm_order_by!]
+
+    """filter the rows returned"""
+    where: aneurysm_bool_exp
+  ): aneurysm_aggregate!
+
+  """fetch data from the table: "aneurysm" using primary key columns"""
+  aneurysm_by_pk(id: Int!): aneurysm
+
+  """
   fetch data from the table: "cases"
   """
   cases(
@@ -2291,6 +3473,49 @@ type query_root {
 
   """fetch data from the table: "disease" using primary key columns"""
   disease_by_pk(id: Int!): disease
+
+  """
+  fetch data from the table: "doctors"
+  """
+  doctors(
+    """distinct select on columns"""
+    distinct_on: [doctors_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [doctors_order_by!]
+
+    """filter the rows returned"""
+    where: doctors_bool_exp
+  ): [doctors!]!
+
+  """
+  fetch aggregated fields from the table: "doctors"
+  """
+  doctors_aggregate(
+    """distinct select on columns"""
+    distinct_on: [doctors_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [doctors_order_by!]
+
+    """filter the rows returned"""
+    where: doctors_bool_exp
+  ): doctors_aggregate!
+
+  """fetch data from the table: "doctors" using primary key columns"""
+  doctors_by_pk(id: Int!): doctors
 
   """
   fetch data from the table: "names"
@@ -2489,6 +3714,92 @@ input String_comparison_exp {
 """subscription root"""
 type subscription_root {
   """
+  fetch data from the table: "access"
+  """
+  access(
+    """distinct select on columns"""
+    distinct_on: [access_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [access_order_by!]
+
+    """filter the rows returned"""
+    where: access_bool_exp
+  ): [access!]!
+
+  """
+  fetch aggregated fields from the table: "access"
+  """
+  access_aggregate(
+    """distinct select on columns"""
+    distinct_on: [access_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [access_order_by!]
+
+    """filter the rows returned"""
+    where: access_bool_exp
+  ): access_aggregate!
+
+  """fetch data from the table: "access" using primary key columns"""
+  access_by_pk(id: Int!): access
+
+  """
+  fetch data from the table: "aneurysm"
+  """
+  aneurysm(
+    """distinct select on columns"""
+    distinct_on: [aneurysm_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [aneurysm_order_by!]
+
+    """filter the rows returned"""
+    where: aneurysm_bool_exp
+  ): [aneurysm!]!
+
+  """
+  fetch aggregated fields from the table: "aneurysm"
+  """
+  aneurysm_aggregate(
+    """distinct select on columns"""
+    distinct_on: [aneurysm_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [aneurysm_order_by!]
+
+    """filter the rows returned"""
+    where: aneurysm_bool_exp
+  ): aneurysm_aggregate!
+
+  """fetch data from the table: "aneurysm" using primary key columns"""
+  aneurysm_by_pk(id: Int!): aneurysm
+
+  """
   fetch data from the table: "cases"
   """
   cases(
@@ -2573,6 +3884,49 @@ type subscription_root {
 
   """fetch data from the table: "disease" using primary key columns"""
   disease_by_pk(id: Int!): disease
+
+  """
+  fetch data from the table: "doctors"
+  """
+  doctors(
+    """distinct select on columns"""
+    distinct_on: [doctors_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [doctors_order_by!]
+
+    """filter the rows returned"""
+    where: doctors_bool_exp
+  ): [doctors!]!
+
+  """
+  fetch aggregated fields from the table: "doctors"
+  """
+  doctors_aggregate(
+    """distinct select on columns"""
+    distinct_on: [doctors_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [doctors_order_by!]
+
+    """filter the rows returned"""
+    where: doctors_bool_exp
+  ): doctors_aggregate!
+
+  """fetch data from the table: "doctors" using primary key columns"""
+  doctors_by_pk(id: Int!): doctors
 
   """
   fetch data from the table: "names"
@@ -2745,4 +4099,21 @@ type subscription_root {
 
   """fetch data from the table: "procedures" using primary key columns"""
   procedures_by_pk(id: Int!): procedures
+}
+
+scalar timestamp
+
+"""
+expression to compare columns of type timestamp. All fields are combined with logical 'AND'.
+"""
+input timestamp_comparison_exp {
+  _eq: timestamp
+  _gt: timestamp
+  _gte: timestamp
+  _in: [timestamp!]
+  _is_null: Boolean
+  _lt: timestamp
+  _lte: timestamp
+  _neq: timestamp
+  _nin: [timestamp!]
 }

@@ -31,11 +31,67 @@ query Diseases {
   }
 }
 
+query Patients {
+  patients {
+    id
+    lastname
+    firstname
+    umrn
+    dob
+  }
+}
+
 query Procedures {
   procedures {
-    group
     id
+    group
     text
+  }
+}
+
+query Aneurysms {
+  aneurysm {
+    id
+    group
+    site
+  }
+}
+
+query Access {
+  access {
+    id
+    vessel
+  }
+}
+
+query Doctors {
+  doctors {
+    id
+    name
+  }
+}
+
+query Cases {
+    cases {
+    id
+    access {
+      vessel
+    }
+    aneurysm {
+      site
+    }
+    doctor {
+      name
+    }
+    patient {
+      firstname
+      lastname
+      umrn
+    }
+    procedure {
+      text
+    }
+    date
   }
 }
 
