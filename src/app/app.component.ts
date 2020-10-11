@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {
+  CasesGQL,
+  CasesQuery,
   AddNameGQL,
   DelNameGQL,
   NameAndDiseaseGQL,
@@ -28,6 +30,7 @@ export class AppComponent implements OnInit {
   namesSub$: Observable<NameAndDiseaseQuery['names']>;
   diseases$: Observable<DiseasesQuery['disease']>;
   procedures$: Observable<ProceduresQuery['procedures']>;
+  cases$: Observable<CasesQuery['cases']>;
 
   title = 'graphql-angular-learning';
 
@@ -58,7 +61,8 @@ export class AppComponent implements OnInit {
     private namesSubscriptionGQL: NameAndDiseaseSubscriptionGQL,
     private addNameGQL: AddNameGQL,
     private delNameGQL: DelNameGQL,
-    private proceduresGQL: ProceduresGQL
+    private proceduresGQL: ProceduresGQL,
+    private casesGQL: CasesGQL
   ) {}
 
   ngOnInit() {
@@ -74,6 +78,9 @@ export class AppComponent implements OnInit {
     this.procedures$ = this.proceduresGQL
       .fetch({})
       .pipe(map((result) => result.data.procedures));
+    this.cases$ = this.casesGQL
+      .fetch({})
+      .pipe(map((result) => result.data.cases));
   }
 
   addName(
