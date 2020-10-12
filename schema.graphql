@@ -1,5 +1,5 @@
 # source: http://localhost:8080/v1/graphql
-# timestamp: Sun Oct 11 2020 19:58:16 GMT+0800 (Australian Western Standard Time)
+# timestamp: Mon Oct 12 2020 22:19:02 GMT+0800 (Australian Western Standard Time)
 
 schema {
   query: query_root
@@ -11,6 +11,41 @@ schema {
 columns and relationships of "access"
 """
 type access {
+  """An array relationship"""
+  cases(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): [cases!]!
+
+  """An aggregated array relationship"""
+  cases_aggregate(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): cases_aggregate!
   id: Int!
   vessel: String!
 }
@@ -84,6 +119,7 @@ input access_bool_exp {
   _and: [access_bool_exp]
   _not: access_bool_exp
   _or: [access_bool_exp]
+  cases: cases_bool_exp
   id: Int_comparison_exp
   vessel: String_comparison_exp
 }
@@ -110,6 +146,7 @@ input access_inc_input {
 input type for inserting data into table "access"
 """
 input access_insert_input {
+  cases: cases_arr_rel_insert_input
   id: Int
   vessel: String
 }
@@ -174,6 +211,7 @@ input access_on_conflict {
 ordering options when selecting data from "access"
 """
 input access_order_by {
+  cases_aggregate: cases_aggregate_order_by
   id: order_by
   vessel: order_by
 }
@@ -296,6 +334,41 @@ input access_variance_order_by {
 columns and relationships of "aneurysm"
 """
 type aneurysm {
+  """An array relationship"""
+  cases(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): [cases!]!
+
+  """An aggregated array relationship"""
+  cases_aggregate(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): cases_aggregate!
   group: String!
   id: Int!
   site: String!
@@ -370,6 +443,7 @@ input aneurysm_bool_exp {
   _and: [aneurysm_bool_exp]
   _not: aneurysm_bool_exp
   _or: [aneurysm_bool_exp]
+  cases: cases_bool_exp
   group: String_comparison_exp
   id: Int_comparison_exp
   site: String_comparison_exp
@@ -397,6 +471,7 @@ input aneurysm_inc_input {
 input type for inserting data into table "aneurysm"
 """
 input aneurysm_insert_input {
+  cases: cases_arr_rel_insert_input
   group: String
   id: Int
   site: String
@@ -466,6 +541,7 @@ input aneurysm_on_conflict {
 ordering options when selecting data from "aneurysm"
 """
 input aneurysm_order_by {
+  cases_aggregate: cases_aggregate_order_by
   group: order_by
   id: order_by
   site: order_by
@@ -1407,6 +1483,41 @@ input disease_variance_order_by {
 columns and relationships of "doctors"
 """
 type doctors {
+  """An array relationship"""
+  cases(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): [cases!]!
+
+  """An aggregated array relationship"""
+  cases_aggregate(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): cases_aggregate!
   id: Int!
   name: String!
 }
@@ -1480,6 +1591,7 @@ input doctors_bool_exp {
   _and: [doctors_bool_exp]
   _not: doctors_bool_exp
   _or: [doctors_bool_exp]
+  cases: cases_bool_exp
   id: Int_comparison_exp
   name: String_comparison_exp
 }
@@ -1506,6 +1618,7 @@ input doctors_inc_input {
 input type for inserting data into table "doctors"
 """
 input doctors_insert_input {
+  cases: cases_arr_rel_insert_input
   id: Int
   name: String
 }
@@ -1570,6 +1683,7 @@ input doctors_on_conflict {
 ordering options when selecting data from "doctors"
 """
 input doctors_order_by {
+  cases_aggregate: cases_aggregate_order_by
   id: order_by
   name: order_by
 }
@@ -2677,6 +2791,41 @@ enum order_by {
 columns and relationships of "patients"
 """
 type patients {
+  """An array relationship"""
+  cases(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): [cases!]!
+
+  """An aggregated array relationship"""
+  cases_aggregate(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): cases_aggregate!
   dob: date
   firstname: String
   id: Int!
@@ -2753,6 +2902,7 @@ input patients_bool_exp {
   _and: [patients_bool_exp]
   _not: patients_bool_exp
   _or: [patients_bool_exp]
+  cases: cases_bool_exp
   dob: date_comparison_exp
   firstname: String_comparison_exp
   id: Int_comparison_exp
@@ -2782,6 +2932,7 @@ input patients_inc_input {
 input type for inserting data into table "patients"
 """
 input patients_insert_input {
+  cases: cases_arr_rel_insert_input
   dob: date
   firstname: String
   id: Int
@@ -2861,6 +3012,7 @@ input patients_on_conflict {
 ordering options when selecting data from "patients"
 """
 input patients_order_by {
+  cases_aggregate: cases_aggregate_order_by
   dob: order_by
   firstname: order_by
   id: order_by
@@ -3007,6 +3159,41 @@ input patients_variance_order_by {
 columns and relationships of "procedures"
 """
 type procedures {
+  """An array relationship"""
+  cases(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): [cases!]!
+
+  """An aggregated array relationship"""
+  cases_aggregate(
+    """distinct select on columns"""
+    distinct_on: [cases_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [cases_order_by!]
+
+    """filter the rows returned"""
+    where: cases_bool_exp
+  ): cases_aggregate!
   group: String
   id: Int!
   text: String!
@@ -3081,6 +3268,7 @@ input procedures_bool_exp {
   _and: [procedures_bool_exp]
   _not: procedures_bool_exp
   _or: [procedures_bool_exp]
+  cases: cases_bool_exp
   group: String_comparison_exp
   id: Int_comparison_exp
   text: String_comparison_exp
@@ -3105,6 +3293,7 @@ input procedures_inc_input {
 input type for inserting data into table "procedures"
 """
 input procedures_insert_input {
+  cases: cases_arr_rel_insert_input
   group: String
   id: Int
   text: String
@@ -3174,6 +3363,7 @@ input procedures_on_conflict {
 ordering options when selecting data from "procedures"
 """
 input procedures_order_by {
+  cases_aggregate: cases_aggregate_order_by
   group: order_by
   id: order_by
   text: order_by
