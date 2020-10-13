@@ -17,41 +17,32 @@
       <option value="Purple"></option>
     </datalist>
 
-    <!-- <app-filter-select2
+    <filtered-select
       [options]="options"
       [lines]="8"
       [backgroundColor]="'white'"
       (chosenOption)="onResult($event)"
       [grouped]="true"
     >
-    </app-filter-select2>
+    </filtered-select>
 
-    <app-filter-select2
+    <filtered-select
       [options]="options2"
       [lines]="8"
       [backgroundColor]="'white'"
       (chosenOption)="onResult($event)"
       [grouped]="true"
     >
-    </app-filter-select2>
+    </filtered-select>
 
-    <app-filter-select2
+    <filtered-select
       [options]="options2"
       [lines]="8"
       [backgroundColor]="'white'"
       (chosenOption)="onResult($event)"
       [grouped]="false"
     >
-    </app-filter-select2> -->
-
-    <app-filter-select2 *ngIf="procedures$ | async as procedures"
-      [options]="procedures"
-      [lines]="8"
-      [backgroundColor]="'white'"
-      (chosenOption)="onResult($event)"
-      [grouped]="true"
-    >
-    </app-filter-select2>
+    </filtered-select>
 
     <filtered-select *ngIf="procedures$ | async as procedures"
       [options]="procedures"
