@@ -72,7 +72,7 @@ query Doctors {
 }
 
 query Cases {
-    cases {
+  cases(limit: 20) {
     id
     access {
       vessel

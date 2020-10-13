@@ -9,9 +9,8 @@ import { getMainDefinition } from 'apollo-utilities';
 
 // see src/proxyconf.json
 const uri = '/api';
-// need to get the current webapp address and change it from http to ws.... solution helped out by
-// https://stackoverflow.com/questions/48793151/angular-cli-proxy-websocket-with-proxy-conf-json
-const wsURI = `${ window.location.protocol.replace('http', 'ws')}//${window.location.host}/ws`;
+// cannot make proxy work for hasura websockets so hardcode this const in
+const wsURI = 'ws://localhost:8080/v1/graphql';
 
 export function createApollo(httpLink: HttpLink) {
   // bastardised from https://www.apollographql.com/docs/angular/features/subscriptions/
