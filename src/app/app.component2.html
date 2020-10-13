@@ -14,23 +14,23 @@
       <option value="Purple"> </option>
     </datalist>
 
-    <filtered-select
+    <filtered-select2
     [options]="options"
     [lines]="8"
     [backgroundColor]="'white'"
     (chosenOption)="onResult($event)"
     [grouped]=true
   >
-  </filtered-select>
+  </filtered-select2>
 
-  <filtered-select
+  <filtered-select2
   [options]="procedures$ | async"
   [lines]="8"
   [backgroundColor]="'white'"
   (chosenOption)="onResult($event)"
   [grouped]=true
 >
-</filtered-select>
+</filtered-select2>
 
 <!-- <code>{{procedures$ | async | json }}</code>
 <br/><br/>

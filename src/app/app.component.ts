@@ -55,6 +55,26 @@ export class AppComponent implements OnInit {
     { text: 'Richo', id: 'SR', group: 'Nicknames' },
   ];
 
+  options2: option[] = [
+    { text: 'Tim', id: 'TP' },
+    { text: 'Ben', id: 'BP' },
+    { text: 'Katie', id: 'KP' },
+    { text: 'John', id: 'JP' },
+    { text: 'Sue', id: 'SP' },
+    { text: 'Sarah', id: 'SR' },
+    { text: 'Claire', id: 'CB' },
+    { text: 'Drew', id: 'AM' },
+    { text: 'Molly', id: 'MP' },
+    { text: 'Lucy', id: 'LP' },
+    { text: 'Jess', id: 'JP2' },
+    { text: 'George', id: 'GP' },
+    { text: 'Daisy', id: 'DM' },
+    { text: 'Benny', id: 'BP'},
+    { text: 'Timbo', id: 'TP' },
+    { text: 'Richo', id: 'SR' },
+  ];
+
+
   constructor(
     private diseasesGQL: DiseasesGQL,
     private namesGQL: NameAndDiseaseGQL,
